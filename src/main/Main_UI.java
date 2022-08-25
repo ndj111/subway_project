@@ -1304,7 +1304,7 @@ public class Main_UI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 				pageMove("statistics");
-
+				dateChooser.setCalendar(null);
 				statisticsModel1.setRowCount(0);
 				connect();
 				statisticsTable.setModel(statisticsModel1);
@@ -1595,7 +1595,7 @@ public class Main_UI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 				pageMove("statistics");
-
+				dateChooser.setCalendar(null);
 				statisticsModel1.setRowCount(0);
 				connect();
 				statisticsTable.setModel(statisticsModel1);
@@ -1877,7 +1877,7 @@ public class Main_UI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 				pageMove("statistics");
-
+				dateChooser.setCalendar(null);
 				statisticsModel1.setRowCount(0);
 				connect();
 				statisticsTable.setModel(statisticsModel1);
@@ -1938,7 +1938,7 @@ public class Main_UI extends JFrame {
 		String[] header1 = {"주문번호", "식사구분", "주문자", "주문내용", "결제방법", "결제금액", "사용적립금", "주문일자"};
 		statisticsModel1 = new DefaultTableModel(header1, 0) {
 			private static final long serialVersionUID = 1L;
-			public boolean isCellEditable(int i, int c) {
+			public boolean isCellEditable(int i, int c) { // 표 안 움직이게 고정
 		        return false;
 		    }
 		};
@@ -1973,7 +1973,6 @@ public class Main_UI extends JFrame {
 				}
 
 				String odate = dateFormat.format(dateChooser.getDate());	
-				
 				subOrderSelect(odate, "statistics"); // 테이블에 날짜 값 입력
 
 				statisticsModelCentered(statisticsTable);
@@ -2189,7 +2188,7 @@ public class Main_UI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 				pageMove("statistics");
-
+				dateChooser.setCalendar(null);
 				statisticsModel1.setRowCount(0);
 				connect();
 				statisticsTable.setModel(statisticsModel1);
