@@ -1238,7 +1238,7 @@ public class Main_UI extends JFrame {
 
 
         //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-        // SubOrder : 관리자페이지 - 주문관리 @공현진
+        // SubOrder : 관리자페이지 - 주문관리 @공현진 ㄴㅁㄴㅇㅁㅇㄴㅁㅇㄴㅁ
         //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
         // 페이지 만들기 (JFrame 이름, 창 타이틀, 배경이미지)
         mkPage(SubOrder, windowName + " 관리자화면 - 주문관리", "/images/admin_order/admin_order_bg.jpg");
