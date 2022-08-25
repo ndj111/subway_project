@@ -39,7 +39,7 @@ public class Main_UI extends JFrame {
     private static final long serialVersionUID = 1L;
     
 
-    // 로딩 시간 새로운 깃 저장소
+    // 로딩 시간
     static int loadingTime = 5000;
 
     // 로딩 이미지
