@@ -3459,11 +3459,59 @@ public class Main_UI extends JFrame {
         }
     }
 
+    
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    //  주문관리 - 총 매출액 계산 메서드
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    void subOrderSum() {
+    	try {
+    		// 1. 데이터베이스로 전송할 SQL문 작성.
+    		sql = "select sum(oprice) from suborder";
+    		pstmt = con.prepareStatement(sql);
+
+    		// 2. 데이터베이스에 SQL문을 전송 및 SQL문 실행.
+    		rs = pstmt.executeQuery();
+
+    		if(rs.next()) {
+    			subOrdertextPane.setText(String.format("%,d", rs.getInt(1))+ " 원");
+    		}
+
+    		// 3. 데이터베이스에 연결되어 있던 자원 종료
+    		rs.close(); pstmt.close();
+
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    }
 
 
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    //  총 수량 계산 메서드
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    void subOrderCount() {
+    	try {
+    		// 1. 데이터베이스로 전송할 SQL문 작성.
+    		sql = "select count(ono) from suborder";
+    		pstmt = con.prepareStatement(sql);
 
+    		// 2. 데이터베이스에 SQL문을 전송 및 SQL문 실행.
+    		rs = pstmt.executeQuery();
 
+    		if(rs.next()) {
+    			subOrdercounttextPane.setText("(" + rs.getInt(1)+ "건)");
+    		}
+
+    		// 3. 데이터베이스에 연결되어 있던 자원 종료
+    		rs.close(); pstmt.close(); 
+					
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+    
+    
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // 주문관리 - 전체 조회 메서드
     //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3539,8 +3587,7 @@ public class Main_UI extends JFrame {
 					}
 
 					subOrdercontent += (("<div style= text-align:center>" 
-							+ "<br>" +
-							 menu  + "<br>" +  " (" + menuPrice + "원) " + "<br>" +  
+							+ "<br>" +  menu  +  " (" + menuPrice + "원) " + "<br>" +  
 							" - " + bread +  " (" + breadPrice + "원) " + "<br>" +
 							" - " + topping  + " (" + toppingPrice  +  "원) " + "<br>" + " - " + vegies +  " (" + vegiesPrice + "원) " + "<br>" +
 							" - " +  sauce + " (" + saucePrice +  "원) " + "<br>" + " - " + set + "(" +  setPrice+ "원) " + "<br>"+"</div><br>"));
@@ -3564,58 +3611,6 @@ public class Main_UI extends JFrame {
 			e.printStackTrace();
 		}
 	}
-
-    
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
-    //  주문관리 - 총 매출액 계산 메서드
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
-    void subOrderSum() {
-    	try {
-    		// 1. 데이터베이스로 전송할 SQL문 작성.
-    		sql = "select sum(oprice) from suborder";
-    		pstmt = con.prepareStatement(sql);
-
-    		// 2. 데이터베이스에 SQL문을 전송 및 SQL문 실행.
-    		rs = pstmt.executeQuery();
-
-    		if(rs.next()) {
-    			subOrdertextPane.setText(String.format("%,d", rs.getInt(1))+ " 원");
-    		}
-
-    		// 3. 데이터베이스에 연결되어 있던 자원 종료
-    		rs.close(); pstmt.close();
-
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
-    }
-
-
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
-    //  총 수량 계산 메서드
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
-    void subOrderCount() {
-    	try {
-    		// 1. 데이터베이스로 전송할 SQL문 작성.
-    		sql = "select count(ono) from suborder";
-    		pstmt = con.prepareStatement(sql);
-
-    		// 2. 데이터베이스에 SQL문을 전송 및 SQL문 실행.
-    		rs = pstmt.executeQuery();
-
-    		if(rs.next()) {
-    			subOrdercounttextPane.setText("(" + rs.getInt(1)+ "건)");
-    		}
-
-    		// 3. 데이터베이스에 연결되어 있던 자원 종료
-    		rs.close(); pstmt.close(); 
-					
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
-    }
 
 
 
@@ -3702,8 +3697,7 @@ public class Main_UI extends JFrame {
 
 					
 					subOrdercontent += (("<div style= text-align:center>" 
-							+ "<br>" +
-							 menu  + "<br>" +  " (" + menuPrice + "원) " + "<br>" +  
+							+ "<br>" +  menu  +  " (" + menuPrice + "원) " + "<br>" +  
 							" - " + bread +  " (" + breadPrice + "원) " + "<br>" +
 							" - " + topping  + " (" + toppingPrice  +  "원) " + "<br>" + " - " + vegies +  " (" + vegiesPrice + "원) " + "<br>" +
 							" - " +  sauce + " (" + saucePrice +  "원) " + "<br>" + " - " + set + "(" +  setPrice+ "원) " + "<br>"+"</div><br>"));						
