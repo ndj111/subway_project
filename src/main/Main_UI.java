@@ -13,7 +13,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Enumeration;
@@ -387,6 +390,8 @@ public class Main_UI extends JFrame {
 
     // JDateChooser(캘린더)
 	JDateChooser dateChooser = new JDateChooser();
+	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yy/MM/dd");  	
+	LocalDateTime today = LocalDateTime.now();  
 	JTextFieldDateEditor dateEditor = (JTextFieldDateEditor)dateChooser.getComponent(1);    
     SimpleDateFormat dateFormat = new SimpleDateFormat("yy/MM/dd");
 
@@ -1292,12 +1297,12 @@ public class Main_UI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 pageMove("suborder");
-
+				
+				String odate = todaySet(subOrdermodel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
 				connect();
-				subOrderSelect("order");
-				subOrderSum();
-				subOrderCount();
-
+				subOrderSelect(odate, "order");
+				subOrderSum(odate);
+				subOrderCount(odate);
 				autoAdjustColumnWidth(subOrdertable);
 				autoAdjustRowHeights(subOrdertable);
 			}
@@ -1308,11 +1313,11 @@ public class Main_UI extends JFrame {
         subOrderbtn2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            		pageMove("submenu");
+            	pageMove("submenu");
 
-                connect(); 
-            		menuModifyselect();
-            		conClose(rs, pstmt);
+            	connect(); 
+            	menuModifyselect();
+            	conClose(rs, pstmt);
 			}
 		});
 
@@ -1334,15 +1339,16 @@ public class Main_UI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 				pageMove("statistics");
-				dateChooser.setCalendar(null);
-				statisticsModel1.setRowCount(0);
+				
+				String odate = todaySet(statisticsModel1, dateChooser); // 자동 선택 값 오늘 날짜로 변경
 				connect();
 				statisticsTable.setModel(statisticsModel1);
 				statisticsTable.getModel();
-				subOrderSelect("statistics");
+				subOrderSelect(odate, "statistics");
 				statisticsModelCentered(statisticsTable);
 				autoAdjustColumnWidth(statisticsTable);
 				autoAdjustRowHeights(statisticsTable);
+				
 			}
 		});
 
@@ -1379,10 +1385,7 @@ public class Main_UI extends JFrame {
    				return false;
    			}
    		};
-
-   		// DefaultTableModel : 테이블을 만들고 난 후 데이터를 넣고 추가, 수정, 삭제 시에도 변경이 가능한 컴포넌트.
-		subOrdermodel = new DefaultTableModel(subOrderheader, 0);
-		
+   		
 		// JTable : 일단은 테이블을 만들고 난 후 데이터를 넣으면 한 번 만든 테이블의 데이터는 변경이 불가능한 컴포넌트. 추가, 수정, 삭제가 불가능한 컴포넌트.
 		// 컬럼 사이즈 조절
 		subOrdertable = new JTable(subOrdermodel);
@@ -1582,15 +1585,17 @@ public class Main_UI extends JFrame {
         subUserBtn1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
                 pageMove("suborder");
-
+                				
+				String odate = todaySet(subOrdermodel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
 				connect();
-				subOrderSelect("order");
-				subOrderSum();
-				subOrderCount();
-
+				subOrderSelect(odate, "order");
+				subOrderSum(odate);
+				subOrderCount(odate);
 				autoAdjustColumnWidth(subOrdertable);
 				autoAdjustRowHeights(subOrdertable);
+				
 			}
 		});
 
@@ -1625,15 +1630,16 @@ public class Main_UI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 				pageMove("statistics");
-				dateChooser.setCalendar(null);
-				statisticsModel1.setRowCount(0);
+				
+				String odate = todaySet(statisticsModel1, dateChooser); // 자동 선택 값 오늘 날짜로 변경
 				connect();
 				statisticsTable.setModel(statisticsModel1);
 				statisticsTable.getModel();
-				subOrderSelect("statistics");
+				subOrderSelect(odate, "statistics");
 				statisticsModelCentered(statisticsTable);
 				autoAdjustColumnWidth(statisticsTable);
 				autoAdjustRowHeights(statisticsTable);
+				
 			}
 		});
 
@@ -1865,12 +1871,12 @@ public class Main_UI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 pageMove("suborder");
-
+				
+				String odate = todaySet(subOrdermodel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
 				connect();
-				subOrderSelect("order");
-				subOrderSum();
-				subOrderCount();
-
+				subOrderSelect(odate, "order");
+				subOrderSum(odate);
+				subOrderCount(odate);
 				autoAdjustColumnWidth(subOrdertable);
 				autoAdjustRowHeights(subOrdertable);
 			}
@@ -1907,12 +1913,12 @@ public class Main_UI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 				pageMove("statistics");
-				dateChooser.setCalendar(null);
-				statisticsModel1.setRowCount(0);
+				
+				String odate = todaySet(statisticsModel1, dateChooser); // 자동 선택 값 오늘 날짜로 변경
 				connect();
 				statisticsTable.setModel(statisticsModel1);
 				statisticsTable.getModel();
-				subOrderSelect("statistics");
+				subOrderSelect(odate, "statistics");
 				statisticsModelCentered(statisticsTable);
 				autoAdjustColumnWidth(statisticsTable);
 				autoAdjustRowHeights(statisticsTable);
@@ -2179,12 +2185,12 @@ public class Main_UI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 pageMove("suborder");
-
+				
+				String odate = todaySet(subOrdermodel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
 				connect();
-				subOrderSelect("order");
-				subOrderSum();
-				subOrderCount();
-
+				subOrderSelect(odate, "order");
+				subOrderSum(odate);
+				subOrderCount(odate);
 				autoAdjustColumnWidth(subOrdertable);
 				autoAdjustRowHeights(subOrdertable);
 			}
@@ -2218,12 +2224,12 @@ public class Main_UI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 				pageMove("statistics");
-				dateChooser.setCalendar(null);
-				statisticsModel1.setRowCount(0);
+				
+				String odate = todaySet(statisticsModel1, dateChooser); // 오늘 날짜로 설정
 				connect();
 				statisticsTable.setModel(statisticsModel1);
 				statisticsTable.getModel();
-				subOrderSelect("statistics");
+				subOrderSelect(odate, "statistics");
 				statisticsModelCentered(statisticsTable);
 				autoAdjustColumnWidth(statisticsTable);
 				autoAdjustRowHeights(statisticsTable);
@@ -2586,15 +2592,15 @@ public class Main_UI extends JFrame {
 
 						// 로그인 타입이 관리자라면..
 						if(inType == "admin") {
-							pageMove("suborder");
-
+							pageMove("suborder");    
+							String odate = todaySet(subOrdermodel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
 							connect();
-							subOrderSelect("order");
-							subOrderSum();
-							subOrderCount();
-			
+							subOrderSelect(odate, "order");
+							subOrderSum(odate);
+							subOrderCount(odate);
 							autoAdjustColumnWidth(subOrdertable);
 							autoAdjustRowHeights(subOrdertable);
+
 
 						}else{
 							showMemInfo();
@@ -4236,8 +4242,24 @@ public class Main_UI extends JFrame {
         lb.setBounds(posX, posY, width, height);
         lb.setVerticalAlignment(SwingConstants.TOP);
     }
-
-
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    // 캘린더 pop-up 시 오늘 날짜로 세팅 (테이블모델, dateChooser)
+    //////////////////////////////////////////////////////////////////////////////////////////// 
+    String todaySet(DefaultTableModel model, JDateChooser dateChooser) {
+    	
+    	model.setRowCount(0);
+    	String odate = dtf.format(today); // 자동 선택 값 오늘 날짜로 변경
+    	try {
+    		dateChooser.setDate(new SimpleDateFormat("yy/MM/dd").parse(odate));
+    	} catch (ParseException e1) {
+    		e1.printStackTrace();
+    	}
+    	
+		return odate;
+    	
+    }
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////
