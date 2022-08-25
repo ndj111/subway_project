@@ -2,6 +2,10 @@ package main;
 
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -33,14 +37,13 @@ import model.AddCartDTO;
 import model.MenuSelectDTO;
 
 
-// 수정
+
 
 public class Main_UI extends JFrame {
     private static final long serialVersionUID = 1L;
     
 
     // 로딩 시간 (1초 = 1000)
-    // ㅁㄴㅇㅁㄴㅇ
     static int loadingTime = 5000;
 
     // 로딩 이미지
@@ -1131,12 +1134,39 @@ public class Main_UI extends JFrame {
         ((JPasswordField) loginJtf2).setEchoChar('*');
         loginJtf2.setBounds(570, 360, 260, 45);
         loginJtf2.setBackground(Color.WHITE);
+        
+        // 엔터키로 로그인버튼 클릭
+        loginJtf2.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			   	        loginBtn1.doClick(); 
+			   	        }
+				 }
+
+			@Override
+			public void keyReleased(KeyEvent e) {}
+				
+		});
 
 		// 로그인 버튼
         mkBtn(loginBtn1, "/images/member_login/login_btn1_off.jpg", "/images/member_login/login_btn1_on.jpg", 450, 438, 390, 72);
 		loginBtn1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+				login(LoginType);
+			}
+		});
+		
+		//엔터키로 로그인 구현
+		loginBtn1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				login(LoginType);
 			}
 		});
@@ -2128,7 +2158,7 @@ public class Main_UI extends JFrame {
 
 
         //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-        // MenuModify : 관리자페이지 - 메뉴관리 @오현록 11111111111
+        // MenuModify : 관리자페이지 - 메뉴관리 @오현록
         //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ		
     	// 페이지 생성 메서드 (JFrame 이름, 창 타이틀, 배경이미지)
         mkPage(MenuModify, "관리자메뉴 - 메뉴관리", "/images/admin_menu/admin_menu_bg.jpg");
@@ -2314,8 +2344,8 @@ public class Main_UI extends JFrame {
                 }
             }
             
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
         }
 
 
