@@ -40,6 +40,7 @@ public class Main_UI extends JFrame {
     
 
     // 로딩 시간 (1초 = 1000)
+    // ㅁㄴㅇㅁㄴㅇ
     static int loadingTime = 5000;
 
     // 로딩 이미지
