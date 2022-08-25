@@ -33,14 +33,13 @@ import model.AddCartDTO;
 import model.MenuSelectDTO;
 
 
-// 수정
+
 
 public class Main_UI extends JFrame {
     private static final long serialVersionUID = 1L;
     
 
     // 로딩 시간 (1초 = 1000)
-    // ㅁㄴㅇㅁㄴㅇ
     static int loadingTime = 5000;
 
     // 로딩 이미지
@@ -2128,7 +2127,7 @@ public class Main_UI extends JFrame {
 
 
         //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-        // MenuModify : 관리자페이지 - 메뉴관리 @오현록 11111111111
+        // MenuModify : 관리자페이지 - 메뉴관리 @오현록
         //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ		
     	// 페이지 생성 메서드 (JFrame 이름, 창 타이틀, 배경이미지)
         mkPage(MenuModify, "관리자메뉴 - 메뉴관리", "/images/admin_menu/admin_menu_bg.jpg");
