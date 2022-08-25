@@ -39,10 +39,10 @@ public class Main_UI extends JFrame {
     private static final long serialVersionUID = 1L;
     
 
-    // 로딩 시간 (1000 = 1초)
+    // 로딩 시간
     static int loadingTime = 5000;
 
-    // 로딩 이미지 노동진 깃 테스트 123
+    // 로딩 이미지
     static JButton mainLoading;
 
 
@@ -356,10 +356,11 @@ public class Main_UI extends JFrame {
     String menuModifyupdateUNO;
     String menuModifystr = "";
     String menuModifyintStr = "";
-    int menuModifycheck=0;
+    String menuModifycheck= "";
     String menuModifytext1 = "";
     String menuModifytext2 = "";
     String menuModifytext3 = "";
+    String subUserCheck = "";
 
 
 
@@ -1238,7 +1239,7 @@ public class Main_UI extends JFrame {
 
 
         //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-        // SubOrder : 관리자페이지 - 주문관리 @공현진 ㄴㅁㄴㅇㅁㅇㄴㅁㅇㄴㅁ
+        // SubOrder : 관리자페이지 - 주문관리 @공현진
         //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
         // 페이지 만들기 (JFrame 이름, 창 타이틀, 배경이미지)
         mkPage(SubOrder, windowName + " 관리자화면 - 주문관리", "/images/admin_order/admin_order_bg.jpg");
@@ -1525,23 +1526,23 @@ public class Main_UI extends JFrame {
         // SubUser : 관리자페이지 - 회원관리 @전영주
         //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
         // 페이지 만들기 (JFrame 이름, 창 타이틀, 배경이미지)
-        mkPage(SubUser, windowName + " 관리자화면 - 회원관리", "/images/admin_member/admin_member_bg.jpg");
+        mkPage(SubUser, windowName + "관리자화면 - 회원관리", "/images/admin_member/admin_member_bg.jpg");
 
 
         // 선택회원삭제
-		mkBtn(subUserBtn6, "/images/admin_member/admin_member_btn1_off.jpg", "/images/admin_member/admin_member_btn1_on.jpg", 64, 653, 138, 38);
+		mkBtn(subUserBtn6, "/images/admin_member/admin_member_btn1_off.jpg", "/images/admin_member/admin_member_btn1_off.jpg", 64, 653, 138, 38);
 
 		// 선택회원수정
-		mkBtn(subUserBtn7, "/images/admin_member/admin_member_btn2_off.jpg", "/images/admin_member/admin_member_btn2_on.jpg", 214, 653, 139, 38);
+		mkBtn(subUserBtn7, "/images/admin_member/admin_member_btn2_off.jpg", "/images/admin_member/admin_member_btn2_off.jpg", 214, 653, 139, 38);
 
 		// 새로운 회원추가
-		mkBtn(subUserBtn8,"/images/admin_member/admin_member_btn3_off.jpg", "/images/admin_member/admin_member_btn3_on.jpg", 676, 653, 153, 38);
+		mkBtn(subUserBtn8,"/images/admin_member/admin_member_btn3_off.jpg", "/images/admin_member/admin_member_btn3_off.jpg", 676, 653, 153, 38);
 
 		// 작성완료
-		mkBtn(subUserBtn9, "/images/admin_member/admin_member_btn4_off.jpg", "/images/admin_member/admin_member_btn4_on.jpg", 951, 569, 260, 56);
+		mkBtn(subUserBtn9, "/images/admin_member/admin_member_btn4_off.jpg", "/images/admin_member/admin_member_btn4_off.jpg", 951, 569, 260, 56);
 
 		// 입력초기화
-		mkBtn(subUserBtn10, "/images/admin_member/admin_member_btn5_off.jpg", "/images/admin_member/admin_member_btn5_on.jpg", 951, 635, 260, 56);
+		mkBtn(subUserBtn10, "/images/admin_member/admin_member_btn5_off.jpg", "/images/admin_member/admin_member_btn5_off.jpg", 951, 635, 260, 56);
 
 
         // 우측 상단 버튼
@@ -1701,10 +1702,10 @@ public class Main_UI extends JFrame {
 		subUserBtn6.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            		if(userTable.getSelectedRow() == -1) {
-            			JOptionPane.showMessageDialog(null, "삭제 할 회원을 선택 후 클릭해 주세요.");
-            			return;
-            		}
+        		if(userTable.getSelectedRow() == -1) {
+        			JOptionPane.showMessageDialog(null, "삭제 할 회원을 선택 후 클릭해 주세요.");
+        			return;
+        		}
 
 				int result = JOptionPane.showConfirmDialog(null, "정말로 삭제하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION);
 				if(result==JOptionPane.CLOSED_OPTION) {
@@ -1720,7 +1721,40 @@ public class Main_UI extends JFrame {
 				}
 			}
 		});
-
+		
+		// 회원 작성 완료 버튼에 3가지 기능을 추가 합니다.
+		subUserBtn9.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+				if(subUserCheck=="") {
+					subUserCheck = "subUserAlert";
+				}
+				switch (subUserCheck) {
+				case "subUserAlert":
+					JOptionPane.showMessageDialog(null, "추가,수정버튼을 먼저 클릭해주세요!", "클릭 입력", JOptionPane.PLAIN_MESSAGE);
+					break;
+				//추가기능	
+				case "subUserAdd" :
+					connect();
+					UserInsert();
+					JOptionPane.showMessageDialog(null, "회원 추가 되었습니다.", "메뉴 추가 완료", JOptionPane.PLAIN_MESSAGE);
+					userSelect();
+					subUserClear();
+					subUserCheck = "subUserAlert";
+					break;
+				//수정기능
+				case "subUserCorrect":
+					connect();
+					userUpdate();
+					subUserClear();
+					userSelect();
+					subUserCheck = "subUserAlert";
+					break;
+					
+				}
+				
+			}
+		});
 
 		// 선택회원수정 버튼 - 회원타입, 비밀번호, 이름, 핸드폰번호, 적립금 수정 가능하다. 아이디는 수정할 수 없다.
 		// 선택한 회원을 수정할 수 있게 텍스트 입력창에 띄운 후 수정하고 작성완료버튼(버튼9)을 누르면 수정한 데이터가 저장된다.
@@ -1728,6 +1762,11 @@ public class Main_UI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 				connect();
+				
+				if(userTable.getSelectedRow() == -1) {
+        			JOptionPane.showMessageDialog(null, "수정할 회원을 선택 후 클릭해 주세요.");
+        			return;
+        		}
 				int row = userTable.getSelectedRow();
 				userComboBox.setSelectedItem(userModel.getValueAt(row, 0));
 
@@ -1736,17 +1775,7 @@ public class Main_UI extends JFrame {
 				subUserJtf3.setText(userModel.getValueAt(row, 2).toString());
 				subUserJtf4.setText(userModel.getValueAt(row, 3).toString());
 				subUserJtf5.setText(userModel.getValueAt(row, 4).toString().replaceAll("[^0-9]", ""));
-
-				subUserBtn9.addMouseListener(new MouseAdapter() {
-		            @Override
-		            public void mouseClicked(MouseEvent e) {
-						connect();
-						userUpdate();
-						subUserClear();
-
-						userSelect();
-					}
-				});
+				subUserCheck = "subUserCorrect";
 			}
 		});
 
@@ -1758,17 +1787,7 @@ public class Main_UI extends JFrame {
             public void mouseClicked(MouseEvent e) {
 				subUserClear();
 				subUserJtf1.requestFocus();
-				subUserBtn9.addMouseListener(new MouseAdapter() {
-		            @Override
-		            public void mouseClicked(MouseEvent e) {
-						connect();
-						UserInsert();
-
-						userSelect();
-					}
-					
-				});
-				subUserClear();
+				subUserCheck = "subUserAdd";
 			}
 		});
 
@@ -2111,7 +2130,7 @@ public class Main_UI extends JFrame {
         // MenuModify : 관리자페이지 - 메뉴관리 @오현록
         //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ		
     	// 페이지 생성 메서드 (JFrame 이름, 창 타이틀, 배경이미지)
-        mkPage(MenuModify,  windowName + " 관리자메뉴 - 메뉴관리", "/images/admin_menu/admin_menu_bg.jpg");
+        mkPage(MenuModify, "관리자메뉴 - 메뉴관리", "/images/admin_menu/admin_menu_bg.jpg");
 
 
         mkBtn(menuModifybtnNewButton6, "/images/admin_menu/admin_menu_btn1_off.jpg", "/images/admin_menu/admin_menu_btn1_on.jpg", 64, 653, 138, 38);
@@ -2205,14 +2224,14 @@ public class Main_UI extends JFrame {
         // 입력수정 폼 컴포넌트
         //카테고리 문구
         JEditorPane menuModifyeditorPane = new JEditorPane();
-        menuModifyeditorPane.setBounds(947, 248, 86, 31);
+        menuModifyeditorPane.setBounds(947, 247, 86, 38);
         menuModifyeditorPane.setFont(new Font("맑은 고딕", Font.PLAIN, 16));
         menuModifyeditorPane.setText("카테고리");
         MenuModify.getContentPane().add(menuModifyeditorPane);
         
         //메뉴이름 문구
         JEditorPane menuModifyeditorPane1 = new JEditorPane();
-        menuModifyeditorPane1.setBounds(947, 310, 86, 31);
+        menuModifyeditorPane1.setBounds(947, 307, 86, 38);
         menuModifyeditorPane1.setText("메뉴이름");
         menuModifyeditorPane1.setFont(new Font("맑은 고딕", Font.PLAIN, 16));
         MenuModify.getContentPane().add(menuModifyeditorPane1);
@@ -2221,12 +2240,12 @@ public class Main_UI extends JFrame {
         JEditorPane menuModifyeditorPane121 = new JEditorPane();
         menuModifyeditorPane121.setText("이미지 사진");
         menuModifyeditorPane121.setFont(new Font("맑은 고딕", Font.PLAIN, 16));
-        menuModifyeditorPane121.setBounds(947, 430, 96, 31);
+        menuModifyeditorPane121.setBounds(947, 427, 96, 38);
         MenuModify.getContentPane().add(menuModifyeditorPane121);
 
         //판매가격 문구
         JEditorPane menuModifyeditorPane12 = new JEditorPane();
-        menuModifyeditorPane12.setBounds(947, 370, 86, 31);
+        menuModifyeditorPane12.setBounds(947, 367, 86, 38);
         menuModifyeditorPane12.setText("판매가격");
         menuModifyeditorPane12.setFont(new Font("맑은 고딕", Font.PLAIN, 16));
         MenuModify.getContentPane().add(menuModifyeditorPane12);
@@ -2245,15 +2264,14 @@ public class Main_UI extends JFrame {
         
         //jcb1 카테고리 콤보박스 담을 패널
         JPanel menuModifypanel2 = new JPanel();
-        menuModifypanel2.setBounds(1045, 237, 162, 48);
+        menuModifypanel2.setBounds(1043, 237, 162, 48);
         menuModifypanel2.setBackground(Color.WHITE);
         MenuModify.getContentPane().add(menuModifypanel2);
 
         // 카테고리 콤보박스
         menuModifyjcb1 = new JComboBox<String>();
-        menuModifyjcb1.setBounds(12, 5, 135, 41);
-        menuModifyjcb1.setBackground(Color.WHITE);
-        menuModifyjcb1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
+        menuModifyjcb1.setBounds(12, 5, 138, 38);
+        menuModifyjcb1.setFont(new Font("맑은 고딕", Font.BOLD, 14));
         menuModifyjcb1.addItem("선택");
         
         // jcb1 카테고리 콤보박스 패널에 담기
@@ -2338,31 +2356,33 @@ public class Main_UI extends JFrame {
 		menuModifybtnNewButton8.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+            		if(menuModifycheck=="") {
+            			menuModifycheck="menuAlert";
+            		}
             		switch (menuModifycheck) {
-            			// case 0은 작성완료 버튼만 눌렀을떄 사용된다.
-            			case 0 :
-            				JOptionPane.showMessageDialog(null, "추가 버튼을 먼저 클릭해주세요!", "클릭 입력", JOptionPane.PLAIN_MESSAGE);
+            			// case menuAlert을 적용 작성완료 버튼만 눌렀을떄 사용된다.
+            			case "menuAlert" :
+            				JOptionPane.showMessageDialog(null, "추가,수정버튼을 먼저 클릭해주세요!", "클릭 입력", JOptionPane.PLAIN_MESSAGE);
             				break;
 
-            			//case 1는 메뉴 추가 기능을 한다.
-            			case 1 :
+            			//case menuAdd 적용 메뉴 추가 기능을 한다.
+            			case "menuAdd" :
             				connect();
 
             				menuModifyinsert();
 
             				JOptionPane.showMessageDialog(null, "메뉴가 추가 되었습니다.", "메뉴 추가 완료", JOptionPane.PLAIN_MESSAGE);
             				menuModifymodel.setRowCount(0);
-
             				menuModifyselect();
             				menuModifyclose();
 
             				conClose(rs, pstmt);
 
-            				menuModifycheck = 0;
+            				menuModifycheck = "menuAlert";
             				break;
 
-            			//case 2는 메뉴 수정 기능을 한다.
-            			case 2 :
+            			//case menuCorrect 적용 메뉴 수정 기능을 한다.
+            			case "menuCorrect" :
             				connect();
             				menuModifyUpdate();
 
@@ -2373,7 +2393,7 @@ public class Main_UI extends JFrame {
             				menuModifyclose();
 
             				conClose(rs, pstmt);
-            				menuModifycheck = 0;
+            				menuModifycheck = "menuAlert";
 
             				break;
             		}
@@ -2416,7 +2436,8 @@ public class Main_UI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
             		menuModifytextField1.requestFocus();
-            		menuModifycheck = 1;
+            		//switch 문에서 사용할 변수값 menuAdd를 저장한다.
+            		menuModifycheck = "menuAdd";
             }
 		});
 
@@ -2455,8 +2476,8 @@ public class Main_UI extends JFrame {
       				menuModifytextField2.setText(menuModifymodel.getValueAt(row, 4).toString());
       				//원을 뺸 가격 텍스트 창에 넣기
       				menuModifytextField3.setText(menuModifyintStr.toString());
-      				//switch 문에서 사용할 변수값 2를 저장한다.
-      				menuModifycheck = 2;
+      				//switch 문에서 사용할 변수값 menuCorrect를 저장한다.
+      				menuModifycheck = "menuCorrect";
   				}
   			}
 		});//메뉴 수정 버튼 끝
