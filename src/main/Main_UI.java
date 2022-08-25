@@ -1716,19 +1716,22 @@ public class Main_UI extends JFrame {
             }
         };
         userTable = new JTable(userModel);
-        userTable.getColumnModel().getColumn(0).setPreferredWidth(110);
-        userTable.getColumnModel().getColumn(1).setPreferredWidth(130);
-        userTable.getColumnModel().getColumn(2).setPreferredWidth(110);
-        userTable.getColumnModel().getColumn(3).setPreferredWidth(160);
-        userTable.getColumnModel().getColumn(4).setPreferredWidth(100);
-        userTable.getColumnModel().getColumn(5).setPreferredWidth(190);
-        userTable.setRowHeight(30);
-        userTable.setBackground(Color.WHITE);
-        userTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+//        userTable.getColumnModel().getColumn(0).setPreferredWidth(110);
+//        userTable.getColumnModel().getColumn(1).setPreferredWidth(130);
+//        userTable.getColumnModel().getColumn(2).setPreferredWidth(110);
+//        userTable.getColumnModel().getColumn(3).setPreferredWidth(160);
+//        userTable.getColumnModel().getColumn(4).setPreferredWidth(100);
+//        userTable.getColumnModel().getColumn(5).setPreferredWidth(190);
+//        userTable.setRowHeight(30);
+//        userTable.setBackground(Color.WHITE);
+//        userTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        statisticsModelCentered(userTable);
+		autoAdjustColumnWidth(userTable);
+		autoAdjustRowHeights(userTable);
+		userTable.setRowHeight(30);
         userTable.getTableHeader().setReorderingAllowed(false); // 컬럼들 이동 불가
         userTable.getTableHeader().setResizingAllowed(false); // 컬럼 크기 조절 불가
-        statisticsModelCentered(userTable);
-        autoAdjustRowHeights(userTable);
+        
 
         JScrollPane UserScrollPane = new JScrollPane(userTable,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -1909,6 +1912,10 @@ public class Main_UI extends JFrame {
 
 				connect();
 				userSelect();
+				
+				statisticsModelCentered(userTable);
+				autoAdjustColumnWidth(userTable);
+		        autoAdjustRowHeights(userTable);
 			}
 		});
 
