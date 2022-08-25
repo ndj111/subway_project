@@ -47,7 +47,7 @@ public class Main_UI extends JFrame {
     
 
     // 로딩 시간 (1초 = 1000)
-    static int loadingTime = 5000;
+    static int loadingTime = 3000;
 
     // 로딩 이미지
     static JButton mainLoading;
@@ -63,7 +63,7 @@ public class Main_UI extends JFrame {
 
 
     // 회원 설정
-    int joinPoint = 1000;       // 회원가입시 기본 적립금
+    int joinPoint = 1000;          // 회원가입시 기본 적립금
     double buyPointPercent = 0.05; // 주문시 적립금 적립률
 
 
