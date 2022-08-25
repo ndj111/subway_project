@@ -1135,7 +1135,26 @@ public class Main_UI extends JFrame {
         loginJtf2.setBounds(570, 360, 260, 45);
         loginJtf2.setBackground(Color.WHITE);
         
-        // 엔터키로 로그인버튼 클릭
+        // 아이디텍스트필드에서 엔터키로 로그인
+        loginJtf1.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					 login(LoginType);
+			   	        }
+				 }
+
+			@Override
+			public void keyReleased(KeyEvent e) {}
+        });
+        
+        
+        
+        // 비밀번호텍스트필드에서 엔터키로 로그인
         loginJtf2.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -1144,7 +1163,7 @@ public class Main_UI extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			   	        loginBtn1.doClick(); 
+					 login(LoginType);
 			   	        }
 				 }
 
@@ -1162,15 +1181,7 @@ public class Main_UI extends JFrame {
 			}
 		});
 		
-		//엔터키로 로그인 구현
-		loginBtn1.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				login(LoginType);
-			}
-		});
-
+		
 
 		// 처음화면으로 버튼
 		mkBtn(loginBtn2, "/images/member_login/login_btn2_off.jpg", "/images/member_login/login_btn2_on.jpg", 450, 527, 390, 72);
@@ -2576,6 +2587,7 @@ public class Main_UI extends JFrame {
 					if (rs.getString("u_pw").equals(chkPWD)) {
 						loginJtf1.setText("");
 						loginJtf2.setText("");
+						loginJtf1.requestFocus();
 
                         // 로그인한 아이디, 이름, 적립금을 변수에 저장
                         User_id = rs.getString("u_id");
