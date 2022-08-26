@@ -40,7 +40,7 @@ import model.MenuSelectDTO;
 // test 중
 
 
-// 최종 수정 : 현진
+// 마지막 수정 : 현진 0826 17:23
 
 public class Main_UI extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -1547,6 +1547,7 @@ public class Main_UI extends JFrame {
 
 					// 데이터 베이스에서 특정 행을 삭제시키는 메서드 호출.
 					subOrderDeleteo(no);
+					subOrderDeletep(no);
 
 					// 실제로 테이블 상의 클릭한 한 행을 삭제
 					subOrderModel.removeRow(row);
