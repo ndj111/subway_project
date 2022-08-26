@@ -2639,9 +2639,6 @@ public class Main_UI extends JFrame {
 			}
 
 		} catch (Exception e) {
-			if (e.getMessage().contains("PRIMARY")) {
-				JOptionPane.showMessageDialog(null, "아이디 중복 오류");
-			}
 			e.printStackTrace();
 		}
 	}
@@ -4098,8 +4095,12 @@ public class Main_UI extends JFrame {
 			pstmt.setString(5, subUserJtf4.getText());
 			pstmt.setInt(6, setUserInsertP);
 			pstmt.executeUpdate();
-		} catch (SQLIntegrityConstraintViolationException e) {
 		} catch (Exception e) {
+			if (e.getMessage().contains("unique")) {
+				JOptionPane.showMessageDialog(null, "아이디 중복");
+				subUserJtf1.requestFocus();
+				return;
+			}
 			e.printStackTrace();
 		}
 	}
@@ -4152,7 +4153,8 @@ public class Main_UI extends JFrame {
 			userModel.removeRow(row);
 			pstmt.close();
 		} catch (Exception e) {
-			if (e.getMessage().contains("child")) {
+			if (e.getMessage().contains("child")) 
+			{
 				JOptionPane.showMessageDialog(null, "주문 내역이 있는 회원입니다! 삭제가 불가능합니다.");
 			}
 			e.printStackTrace();
