@@ -37,6 +37,8 @@ import com.toedter.calendar.JTextFieldDateEditor;
 import model.AddCartDTO;
 import model.MenuSelectDTO;
 
+// test 중
+
 
 // 최종 수정 : 현진
 
@@ -3686,7 +3688,7 @@ public class Main_UI extends JFrame {
     void subOrderSelect(String odate, String page) {
     	try {
     		// 1. 데이터베이스로 전송할 SQL문 작성.
-			sql = "select * from suborder where odate like ?";
+			sql = "select * from suborder where odate like ? order by odate desc";
 
 			//서브오더에서 모든 자료 날짜가 선택한 창일 경우			
 			pstmt = con.prepareStatement(sql);
