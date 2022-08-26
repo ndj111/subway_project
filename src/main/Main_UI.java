@@ -38,7 +38,7 @@ import model.AddCartDTO;
 import model.MenuSelectDTO;
 
 
-
+// 최종 수정 : 현진
 
 public class Main_UI extends JFrame {
     private static final long serialVersionUID = 1L;
