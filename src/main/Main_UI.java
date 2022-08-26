@@ -426,7 +426,7 @@ public class Main_UI extends JFrame {
         //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
         // 페이지 만들기 (창 이름, 창 타이틀, 배경이미지)
         int mainBgNum = (int)(Math.random() * 3) + 1;
-        mkPage(MainPage, "2조 :: Java Project SUBWAY", "/images/main/main_bg"+mainBgNum+".jpg");
+        mkPage(MainPage, windowName, "/images/main/main_bg"+mainBgNum+".jpg");
 
 
         // 로딩 이미지
@@ -2192,7 +2192,7 @@ public class Main_UI extends JFrame {
         // MenuModify : 관리자페이지 - 메뉴관리 @오현록
         //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ		
     	// 페이지 생성 메서드 (JFrame 이름, 창 타이틀, 배경이미지)
-        mkPage(MenuModify, "관리자메뉴 - 메뉴관리", "/images/admin_menu/admin_menu_bg.jpg");
+        mkPage(MenuModify, windowName +" 관리자화면 - 메뉴관리", "/images/admin_menu/admin_menu_bg.jpg");
 
 
         mkBtn(menuModifybtnNewButton6, "/images/admin_menu/admin_menu_btn1_off.jpg", "/images/admin_menu/admin_menu_btn1_on.jpg", 64, 653, 138, 38);
@@ -2852,7 +2852,13 @@ public class Main_UI extends JFrame {
     // 장바구니 리셋 (비우기)
     ////////////////////////////////////////////////////////////////////////////////////////////
     void cartReset() {
+        // 주문배열 비우기
         orderCartMenu.clear();
+
+        // 주문확인 선택 초기화
+        orderCartRadio1_1.doClick();
+        orderCartRadio2_1.doClick();
+        orderCartInput.setText("0");
     }
 
 
@@ -3295,6 +3301,7 @@ public class Main_UI extends JFrame {
         int TempSelSumprice = TempSel1Price + TempSel2Price + TempSel3Price + TempSel4Price + TempSel5Price + TempSel6Price;
 
         // 주문 배열에 넣기
+        // System.out.println(TempSel1Name+"\n"+TempSel1Price+"\n"+TempSel2Name+"\n"+TempSel2Price+"\n"+TempSel3Name+"\n"+TempSel3Price+"\n"+TempSel4Name+"\n"+TempSel4Price+"\n"+TempSel5Name+"\n"+TempSel5Price+"\n"+TempSel6Name+"\n"+TempSel6Price+"\n"+TempSelSumprice);
         orderCartMenu.add(new AddCartDTO(TempSel1Name, TempSel1Price, TempSel2Name, TempSel2Price, TempSel3Name, TempSel3Price, TempSel4Name, TempSel4Price, TempSel5Name, TempSel5Price, TempSel6Name, TempSel6Price, TempSelSumprice));
 
         // 장바구니 새로고침
@@ -3373,6 +3380,7 @@ public class Main_UI extends JFrame {
 
                 conClose(rs, pstmt, con);
 
+
                 // 주문번호 생성
                 if(chkSess != null) {
             		String[] epdSess = chkSess.split("_");
@@ -3446,6 +3454,7 @@ public class Main_UI extends JFrame {
                 connect();
 
                 // 주문상품 넣기
+                OPRICE = 0;
                 for(int i=0; i<orderCartMenu.size(); i++){
                     AddCartDTO ACdto = orderCartMenu.get(i);
 
