@@ -47,7 +47,7 @@ public class Main_UI extends JFrame {
     
 
     // 로딩 시간 (1초 = 1000)
-    static int loadingTime = 5000;
+    static int loadingTime = 3000;
 
     // 로딩 이미지
     static JButton mainLoading;
@@ -63,7 +63,7 @@ public class Main_UI extends JFrame {
 
 
     // 회원 설정
-    int joinPoint = 1000;       // 회원가입시 기본 적립금
+    int joinPoint = 1000;          // 회원가입시 기본 적립금
     double buyPointPercent = 0.05; // 주문시 적립금 적립률
 
 
@@ -450,7 +450,7 @@ public class Main_UI extends JFrame {
         mainBtn2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            		LoginType = "member";
+            	LoginType = "member";
                 pageMove("login");
 				loginJtf1.setText("");
 				loginJtf2.setText("");
@@ -471,7 +471,7 @@ public class Main_UI extends JFrame {
         mainBtn4.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            		LoginType = "admin";
+            	LoginType = "admin";
                 pageMove("login");
 				loginJtf1.setText("");
 				loginJtf2.setText("");
@@ -505,7 +505,7 @@ public class Main_UI extends JFrame {
         mkTxt(orderMenu1Text2, "메뉴 선택", "bold", 18, 0, 0, 0, 971, 204, 220, 35);
 
         // 텍스트 3
-        mkTxt(orderMenu1Text3, orderMenu1Text3Cont, "plain", 16, 51, 51, 51, 971, 275, 220, 80);
+        mkTxt(orderMenu1Text3, orderMenu1Text3Cont, "plain", 16, 51, 51, 51, 971, 275, 255, 80);
 
         // 버튼 : 다음 선택
         mkBtn(orderMenu1Btn1, "/images/menu_order/menu_order_btn_next_off.jpg", "/images/menu_order/menu_order_btn_next_on.jpg", 971, 543, 220, 56);
@@ -561,7 +561,7 @@ public class Main_UI extends JFrame {
         mkTxt(orderMenu2Text2, "빵 선택", "bold", 18, 0, 0, 0, 971, 204, 220, 35);
 
         // 텍스트 3
-        mkTxt(orderMenu2Text3, orderMenu2Text3Cont, "plain", 16, 51, 51, 51, 971, 275, 220, 80);
+        mkTxt(orderMenu2Text3, orderMenu2Text3Cont, "plain", 16, 51, 51, 51, 971, 275, 255, 80);
 
         // 버튼 : 다음 선택
         mkBtn(orderMenu2Btn1, "/images/menu_order/menu_order_btn_next_off.jpg", "/images/menu_order/menu_order_btn_next_on.jpg", 971, 479, 220, 56);
@@ -631,7 +631,7 @@ public class Main_UI extends JFrame {
         mkTxt(orderMenu3Text2, "추가토핑 선택", "bold", 18, 0, 0, 0, 971, 204, 220, 35);
 
         // 텍스트 3
-        mkTxt(orderMenu3Text3, orderMenu3Text3Cont, "plain", 16, 51, 51, 51, 971, 275, 220, 80);
+        mkTxt(orderMenu3Text3, orderMenu3Text3Cont, "plain", 16, 51, 51, 51, 971, 275, 255, 80);
 
         // 버튼 : 다음 선택
         mkBtn(orderMenu3Btn1, "/images/menu_order/menu_order_btn_next_off.jpg", "/images/menu_order/menu_order_btn_next_on.jpg", 971, 479, 220, 56);
@@ -697,7 +697,7 @@ public class Main_UI extends JFrame {
         mkTxt(orderMenu4Text2, "야채 선택", "bold", 18, 0, 0, 0, 971, 204, 220, 35);
 
         // 텍스트 3
-        mkTxt(orderMenu4Text3, orderMenu4Text3Cont, "plain", 16, 51, 51, 51, 971, 275, 220, 80);
+        mkTxt(orderMenu4Text3, orderMenu4Text3Cont, "plain", 16, 51, 51, 51, 971, 275, 255, 80);
 
         // 버튼 : 다음 선택
         mkBtn(orderMenu4Btn1, "/images/menu_order/menu_order_btn_next_off.jpg", "/images/menu_order/menu_order_btn_next_on.jpg", 971, 479, 220, 56);
@@ -763,7 +763,7 @@ public class Main_UI extends JFrame {
         mkTxt(orderMenu5Text2, "소스 선택", "bold", 18, 0, 0, 0, 971, 204, 220, 35);
 
         // 텍스트 3
-        mkTxt(orderMenu5Text3, orderMenu5Text3Cont, "plain", 16, 51, 51, 51, 971, 275, 220, 80);
+        mkTxt(orderMenu5Text3, orderMenu5Text3Cont, "plain", 16, 51, 51, 51, 971, 275, 255, 80);
 
         // 버튼 : 다음 선택
         mkBtn(orderMenu5Btn1, "/images/menu_order/menu_order_btn_next_off.jpg", "/images/menu_order/menu_order_btn_next_on.jpg", 971, 479, 220, 56);
@@ -829,7 +829,7 @@ public class Main_UI extends JFrame {
         mkTxt(orderMenu6Text2, "세트 선택", "bold", 18, 0, 0, 0, 971, 204, 220, 35);
 
         // 텍스트 3
-        mkTxt(orderMenu6Text3, orderMenu6Text3Cont, "plain", 16, 51, 51, 51, 971, 275, 220, 80);
+        mkTxt(orderMenu6Text3, orderMenu6Text3Cont, "plain", 16, 51, 51, 51, 971, 275, 255, 80);
 
         // 버튼 : 주문확인하기
         mkBtn(orderMenu6Btn1, "/images/menu_order/menu_order_btn_cart_off.jpg", "/images/menu_order/menu_order_btn_cart_on.jpg", 971, 479, 220, 56);
@@ -1575,19 +1575,19 @@ public class Main_UI extends JFrame {
 
 
         // 선택회원삭제
-		mkBtn(subUserBtn6, "/images/admin_member/admin_member_btn1_off.jpg", "/images/admin_member/admin_member_btn1_off.jpg", 64, 653, 138, 38);
+		mkBtn(subUserBtn6, "/images/admin_member/admin_member_btn1_off.jpg", "/images/admin_member/admin_member_btn1_on.jpg", 64, 653, 138, 38);
 
 		// 선택회원수정
-		mkBtn(subUserBtn7, "/images/admin_member/admin_member_btn2_off.jpg", "/images/admin_member/admin_member_btn2_off.jpg", 214, 653, 139, 38);
+		mkBtn(subUserBtn7, "/images/admin_member/admin_member_btn2_off.jpg", "/images/admin_member/admin_member_btn2_on.jpg", 214, 653, 139, 38);
 
 		// 새로운 회원추가
-		mkBtn(subUserBtn8,"/images/admin_member/admin_member_btn3_off.jpg", "/images/admin_member/admin_member_btn3_off.jpg", 676, 653, 153, 38);
+		mkBtn(subUserBtn8,"/images/admin_member/admin_member_btn3_off.jpg", "/images/admin_member/admin_member_btn3_on.jpg", 676, 653, 153, 38);
 
 		// 작성완료
-		mkBtn(subUserBtn9, "/images/admin_member/admin_member_btn4_off.jpg", "/images/admin_member/admin_member_btn4_off.jpg", 951, 569, 260, 56);
+		mkBtn(subUserBtn9, "/images/admin_member/admin_member_btn4_off.jpg", "/images/admin_member/admin_member_btn4_on.jpg", 951, 569, 260, 56);
 
 		// 입력초기화
-		mkBtn(subUserBtn10, "/images/admin_member/admin_member_btn5_off.jpg", "/images/admin_member/admin_member_btn5_off.jpg", 951, 635, 260, 56);
+		mkBtn(subUserBtn10, "/images/admin_member/admin_member_btn5_off.jpg", "/images/admin_member/admin_member_btn5_on.jpg", 951, 635, 260, 56);
 
 
         // 우측 상단 버튼
@@ -1659,7 +1659,7 @@ public class Main_UI extends JFrame {
         subUserBtn5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            		gotoMain();
+            	gotoMain();
 			}
 		});
 
@@ -2656,31 +2656,31 @@ public class Main_UI extends JFrame {
 	void showMemInfo() {
 	    orderMenuMemBg1.setIcon(new ImageIcon(Main_UI.class.getResource("/images/common/menu_user_bg.jpg")));;
 	    orderMenuMemBg1.setBounds(910, 8, 340, 110);
-	    mkTxt(orderMenuMemInfo1, "<html>"+User_name+"님 안녕하세요<br>사용가능한 적립금 : "+String.format("%,d", User_point)+"원</html>", "plain", 14, 51, 51, 51, 1014, 47, 300, 70);
+	    mkTxt(orderMenuMemInfo1, "<html>"+User_name+"님 안녕하세요<br>사용가능한 적립금 : "+String.format("%,d", User_point)+"원</html>", "plain", 14, 51, 51, 51, 1014, 44, 300, 70);
 
 	    orderMenuMemBg2.setIcon(new ImageIcon(Main_UI.class.getResource("/images/common/menu_user_bg.jpg")));;
 	    orderMenuMemBg2.setBounds(910, 8, 340, 110);
-	    mkTxt(orderMenuMemInfo2, "<html>"+User_name+"님 안녕하세요<br>사용가능한 적립금 : "+String.format("%,d", User_point)+"원</html>", "plain", 14, 51, 51, 51, 1014, 47, 300, 70);
+	    mkTxt(orderMenuMemInfo2, "<html>"+User_name+"님 안녕하세요<br>사용가능한 적립금 : "+String.format("%,d", User_point)+"원</html>", "plain", 14, 51, 51, 51, 1014, 44, 300, 70);
 
 	    orderMenuMemBg3.setIcon(new ImageIcon(Main_UI.class.getResource("/images/common/menu_user_bg.jpg")));;
 	    orderMenuMemBg3.setBounds(910, 8, 340, 110);
-	    mkTxt(orderMenuMemInfo3, "<html>"+User_name+"님 안녕하세요<br>사용가능한 적립금 : "+String.format("%,d", User_point)+"원</html>", "plain", 14, 51, 51, 51, 1014, 47, 300, 70);
+	    mkTxt(orderMenuMemInfo3, "<html>"+User_name+"님 안녕하세요<br>사용가능한 적립금 : "+String.format("%,d", User_point)+"원</html>", "plain", 14, 51, 51, 51, 1014, 44, 300, 70);
 
 	    orderMenuMemBg4.setIcon(new ImageIcon(Main_UI.class.getResource("/images/common/menu_user_bg.jpg")));;
 	    orderMenuMemBg4.setBounds(910, 8, 340, 110);
-	    mkTxt(orderMenuMemInfo4, "<html>"+User_name+"님 안녕하세요<br>사용가능한 적립금 : "+String.format("%,d", User_point)+"원</html>", "plain", 14, 51, 51, 51, 1014, 47, 300, 70);
+	    mkTxt(orderMenuMemInfo4, "<html>"+User_name+"님 안녕하세요<br>사용가능한 적립금 : "+String.format("%,d", User_point)+"원</html>", "plain", 14, 51, 51, 51, 1014, 44, 300, 70);
 
 	    orderMenuMemBg5.setIcon(new ImageIcon(Main_UI.class.getResource("/images/common/menu_user_bg.jpg")));;
 	    orderMenuMemBg5.setBounds(910, 8, 340, 110);
-	    mkTxt(orderMenuMemInfo5, "<html>"+User_name+"님 안녕하세요<br>사용가능한 적립금 : "+String.format("%,d", User_point)+"원</html>", "plain", 14, 51, 51, 51, 1014, 47, 300, 70);
+	    mkTxt(orderMenuMemInfo5, "<html>"+User_name+"님 안녕하세요<br>사용가능한 적립금 : "+String.format("%,d", User_point)+"원</html>", "plain", 14, 51, 51, 51, 1014, 44, 300, 70);
 
 	    orderMenuMemBg6.setIcon(new ImageIcon(Main_UI.class.getResource("/images/common/menu_user_bg.jpg")));;
 	    orderMenuMemBg6.setBounds(910, 8, 340, 110);
-	    mkTxt(orderMenuMemInfo6, "<html>"+User_name+"님 안녕하세요<br>사용가능한 적립금 : "+String.format("%,d", User_point)+"원</html>", "plain", 14, 51, 51, 51, 1014, 47, 300, 70);
+	    mkTxt(orderMenuMemInfo6, "<html>"+User_name+"님 안녕하세요<br>사용가능한 적립금 : "+String.format("%,d", User_point)+"원</html>", "plain", 14, 51, 51, 51, 1014, 44, 300, 70);
 
 	    orderMenuMemBgCart.setIcon(new ImageIcon(Main_UI.class.getResource("/images/common/menu_user_bg.jpg")));;
 	    orderMenuMemBgCart.setBounds(910, 8, 340, 110);
-	    mkTxt(orderMenuMemInfoCart, "<html>"+User_name+"님 안녕하세요<br>사용가능한 적립금 : "+String.format("%,d", User_point)+"원</html>", "plain", 14, 51, 51, 51, 1014, 47, 300, 70);
+	    mkTxt(orderMenuMemInfoCart, "<html>"+User_name+"님 안녕하세요<br>사용가능한 적립금 : "+String.format("%,d", User_point)+"원</html>", "plain", 14, 51, 51, 51, 1014, 44, 300, 70);
 
 	    Order1.getContentPane().add(orderMenuMemInfo1);
 	    Order1.getContentPane().add(orderMenuMemBg1);
@@ -2700,8 +2700,8 @@ public class Main_UI extends JFrame {
 
         // 적립금사용 부분
         mkTxt(orderCartText5, "적립금사용 : ", "bold", 16, 51, 51, 51, 971, 461, 220, 30);
-        mkTxt(orderCartText6, "원", "plain", 16, 51, 51, 51, 1132, 462, 30, 30);
-        mkInp(orderCartInput, "0", 10, "plain", 16, "center", 1050, 450, 80, 40);
+        mkTxt(orderCartText6, "원", "plain", 16, 51, 51, 51, 1152, 462, 30, 30);
+        mkInp(orderCartInput, "0", 10, "plain", 16, "center", 1070, 452, 80, 40);
 
         OrderCart.getContentPane().add(orderCartText5);
         OrderCart.getContentPane().add(orderCartText6);
