@@ -1,8 +1,6 @@
 # Subway kiosk Java Swing Project
 
 <br/>
-
-## KH정보교육원 종로 2조
 #### 진행기간 : 2022.08.12 ~ 2022.08.29
 #### 팀리더 : [남윤지](https://github.com/YJ-NAM)
 #### 팀원 : [노동진](https://github.com/ndj111), [공현진](https://github.com/bbbmore), [전영주](https://github.com/Yeongdu), [오현록](https://github.com/ohhyunrok)
