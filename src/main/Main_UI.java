@@ -47,7 +47,7 @@ public class Main_UI extends JFrame {
     
 
     // 로딩 시간 (1초 = 1000)
-    static int loadingTime = 3000;
+    static int loadingTime = 7000;
 
     // 로딩 이미지
     static JButton mainLoading;
@@ -293,16 +293,16 @@ public class Main_UI extends JFrame {
 	JButton subOrderbtn6 = new JButton();
 	JButton subOrderbtn7 = new JButton();
 	JButton subOrderbtn8 = new JButton();
-	DefaultTableModel subOrdermodel;
-	JTable subOrdertable;
+	DefaultTableModel subOrderModel;
+	JTable subOrderTable;
 	JLabel subOrderlblNewLabel = new JLabel();
 	JLabel subOrderSelectedDate = new JLabel();
-	JTextPane subOrdertextPane = new JTextPane();
-	JTextPane subOrdertextPanedate = new JTextPane();
-	JTextPane subOrdercounttextPane = new JTextPane();
+	JTextPane subOrderTextPane = new JTextPane();
+	JTextPane subOrderTextPanedate = new JTextPane();
+	JTextPane subOrderCountTextPane = new JTextPane();
 
-	String subOrdercontent;
-	int subOrderselectprice, subOrdersearchprice, subOrderselectsaved, subOrdersearchsaved;
+	String subOrderContent;
+	int subOrderSelectPrice, subOrderSearchPrice, subOrderSelectSaved, subOrderSearchSaved;
 
     // JDateChooser(캘린더)
 	JDateChooser dateChooserOrder = new JDateChooser();
@@ -1309,13 +1309,13 @@ public class Main_UI extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 pageMove("suborder");
 				
-				String odate = todaySet(subOrdermodel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
+				String odate = todaySet(subOrderModel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
 				connect();
 				subOrderSelect(odate, "order");
 				subOrderSum(odate);
 				subOrderCount(odate);
-				autoAdjustColumnWidth(subOrdertable);
-				autoAdjustRowHeights(subOrdertable);
+				autoAdjustColumnWidth(subOrderTable);
+				autoAdjustRowHeights(subOrderTable);
 			}
 		});
 
@@ -1389,7 +1389,7 @@ public class Main_UI extends JFrame {
    		String[] subOrderheader = {"주문번호", "식사구분", "주문자", "주문 내용", "결제방법", "결제금액", "사용적립금", "주문일자"};
 
         // DefaultTableModel : 테이블을 만들고 난 후 데이터를 넣고 추가, 수정, 삭제 시에도 변경이 가능한 컴포넌트.
-   		subOrdermodel = new DefaultTableModel(subOrderheader, 0){
+   		subOrderModel = new DefaultTableModel(subOrderheader, 0){
    			// Jtable 내용 편집 안되게
    			private static final long serialVersionUID = 1L;
    			public boolean isCellEditable(int i, int c) {
@@ -1399,15 +1399,15 @@ public class Main_UI extends JFrame {
    		
 		// JTable : 일단은 테이블을 만들고 난 후 데이터를 넣으면 한 번 만든 테이블의 데이터는 변경이 불가능한 컴포넌트. 추가, 수정, 삭제가 불가능한 컴포넌트.
 		// 컬럼 사이즈 조절
-		subOrdertable = new JTable(subOrdermodel);
-		statisticsModelCentered(subOrdertable);
-		subOrdertable.setFont(new Font("맑은 고딕", Font.PLAIN, 13));	
-		subOrdertable.getTableHeader().setReorderingAllowed(false); // 컬럼들 이동 불가
-		subOrdertable.getTableHeader().setResizingAllowed(false); // 컬럼 크기 조절 불가
+		subOrderTable = new JTable(subOrderModel);
+		statisticsModelCentered(subOrderTable);
+		subOrderTable.setFont(new Font("맑은 고딕", Font.PLAIN, 13));	
+		subOrderTable.getTableHeader().setReorderingAllowed(false); // 컬럼들 이동 불가
+		subOrderTable.getTableHeader().setResizingAllowed(false); // 컬럼 크기 조절 불가
 
 		// 스크롤
 		JScrollPane subOrderjsp = new JScrollPane(
-				subOrdertable,
+				subOrderTable,
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		subOrderjsp.setBounds(20, 10, 1128, 459);
@@ -1418,16 +1418,16 @@ public class Main_UI extends JFrame {
 		SubOrder.getContentPane().add(subOrderlblNewLabel);
 		
 		// 금액 계산 창
-		subOrdertextPane.setForeground(new Color(0, 113, 255));
-		subOrdertextPane.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 17));
-		subOrdertextPane.setBounds(720, 153, 122, 25);
-		SubOrder.getContentPane().add(subOrdertextPane);
+		subOrderTextPane.setForeground(new Color(0, 113, 255));
+		subOrderTextPane.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 17));
+		subOrderTextPane.setBounds(720, 153, 122, 25);
+		SubOrder.getContentPane().add(subOrderTextPane);
 		
 		// 몇 건인지 보여주는 textpane
-		subOrdercounttextPane.setForeground(new Color(0, 113, 255));
-		subOrdercounttextPane.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 15));
-		subOrdercounttextPane.setBounds(850, 154, 100, 25);
-		SubOrder.getContentPane().add(subOrdercounttextPane);
+		subOrderCountTextPane.setForeground(new Color(0, 113, 255));
+		subOrderCountTextPane.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 15));
+		subOrderCountTextPane.setBounds(850, 154, 100, 25);
+		SubOrder.getContentPane().add(subOrderCountTextPane);
 
 
 		// 프레임에 버튼 넣기
@@ -1466,7 +1466,7 @@ public class Main_UI extends JFrame {
             public void mouseClicked(MouseEvent e) {
 
 				// 내용 초기화
-				subOrdermodel.setRowCount(0);
+				subOrderModel.setRowCount(0);
 				
 				// 연결 메소드
 				connect();
@@ -1488,8 +1488,8 @@ public class Main_UI extends JFrame {
 				// 선택된 날 주문 수량
 				subOrderCount(odate);
 
-				autoAdjustColumnWidth(subOrdertable);
-				autoAdjustRowHeights(subOrdertable);
+				autoAdjustColumnWidth(subOrderTable);
+				autoAdjustRowHeights(subOrderTable);
 			}
 		});
 	
@@ -1509,8 +1509,8 @@ public class Main_UI extends JFrame {
 				subOrderSum();
 				subOrderCount();
 
-				autoAdjustColumnWidth(subOrdertable);
-				autoAdjustRowHeights(subOrdertable);
+				autoAdjustColumnWidth(subOrderTable);
+				autoAdjustRowHeights(subOrderTable);
 			}
 		});
 
@@ -1520,6 +1520,10 @@ public class Main_UI extends JFrame {
 	    subOrderbtn7.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+            	
+            		if(subOrderTable.getSelectedRow() == -1) {
+            			JOptionPane.showMessageDialog(null, "삭제 할 주문을 선택 후 클릭해 주세요.");
+            			return;}
             		int result = JOptionPane.showConfirmDialog(null, "정말로 삭제하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION);
 
 				// 만약 창 닫기를 클릭하거나 취소 버튼을 클릭하지 않았다면
@@ -1534,17 +1538,17 @@ public class Main_UI extends JFrame {
 
 					// 테이블의 특정 행을 클릭했을 때 해당 테이블의
 					// 행의 값을 가져오는 메서드
-					int row = subOrdertable.getSelectedRow();
+					int row = subOrderTable.getSelectedRow();
 
 					// 해당 행의 값을 가져올 때 해당 행의 0번째
 					// 열의 값(번호)을 가져오는 메서드.
-					String no = (String) (subOrdermodel.getValueAt(row, 0));
+					String no = (String) (subOrderModel.getValueAt(row, 0));
 
 					// 데이터 베이스에서 특정 행을 삭제시키는 메서드 호출.
 					subOrderDeleteo(no);
 
 					// 실제로 테이블 상의 클릭한 한 행을 삭제
-					subOrdermodel.removeRow(row);
+					subOrderModel.removeRow(row);
 
 
 					// 삭제 후 재조회 메서드
@@ -1556,8 +1560,8 @@ public class Main_UI extends JFrame {
 					// 총 판매 수량 조회 메서드
 					subOrderCount();
 
-					autoAdjustColumnWidth(subOrdertable);
-					autoAdjustRowHeights(subOrdertable);
+					autoAdjustColumnWidth(subOrderTable);
+					autoAdjustRowHeights(subOrderTable);
 				}
 			}
 		});	
@@ -1599,13 +1603,13 @@ public class Main_UI extends JFrame {
 
                 pageMove("suborder");
                 				
-				String odate = todaySet(subOrdermodel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
+				String odate = todaySet(subOrderModel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
 				connect();
 				subOrderSelect(odate, "order");
 				subOrderSum(odate);
 				subOrderCount(odate);
-				autoAdjustColumnWidth(subOrdertable);
-				autoAdjustRowHeights(subOrdertable);
+				autoAdjustColumnWidth(subOrderTable);
+				autoAdjustRowHeights(subOrderTable);
 				
 			}
 		});
@@ -1883,13 +1887,13 @@ public class Main_UI extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 pageMove("suborder");
 				
-				String odate = todaySet(subOrdermodel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
+				String odate = todaySet(subOrderModel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
 				connect();
 				subOrderSelect(odate, "order");
 				subOrderSum(odate);
 				subOrderCount(odate);
-				autoAdjustColumnWidth(subOrdertable);
-				autoAdjustRowHeights(subOrdertable);
+				autoAdjustColumnWidth(subOrderTable);
+				autoAdjustRowHeights(subOrderTable);
 			}
 		});
 
@@ -2197,13 +2201,13 @@ public class Main_UI extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 pageMove("suborder");
 				
-				String odate = todaySet(subOrdermodel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
+				String odate = todaySet(subOrderModel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
 				connect();
 				subOrderSelect(odate, "order");
 				subOrderSum(odate);
 				subOrderCount(odate);
-				autoAdjustColumnWidth(subOrdertable);
-				autoAdjustRowHeights(subOrdertable);
+				autoAdjustColumnWidth(subOrderTable);
+				autoAdjustRowHeights(subOrderTable);
 			}
 		});
 
@@ -2605,13 +2609,13 @@ public class Main_UI extends JFrame {
 						// 로그인 타입이 관리자라면..
 						if(inType == "admin") {
 							pageMove("suborder");    
-							String odate = todaySet(subOrdermodel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
+							String odate = todaySet(subOrderModel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
 							connect();
 							subOrderSelect(odate, "order");
 							subOrderSum(odate);
 							subOrderCount(odate);
-							autoAdjustColumnWidth(subOrdertable);
-							autoAdjustRowHeights(subOrdertable);
+							autoAdjustColumnWidth(subOrderTable);
+							autoAdjustRowHeights(subOrderTable);
 
 
 						}else{
@@ -3521,7 +3525,7 @@ public class Main_UI extends JFrame {
     		rs = pstmt.executeQuery();
 
     		if(rs.next()) {
-    			subOrdertextPane.setText(String.format("%,d", rs.getInt(1))+ " 원");
+    			subOrderTextPane.setText(String.format("%,d", rs.getInt(1))+ " 원");
     		}
 
     		// 3. 데이터베이스에 연결되어 있던 자원 종료
@@ -3547,7 +3551,7 @@ public class Main_UI extends JFrame {
     		rs = pstmt.executeQuery();
 
     		if(rs.next()) {
-    			subOrdercounttextPane.setText("(" + rs.getInt(1)+ "건)");
+    			subOrderCountTextPane.setText("(" + rs.getInt(1)+ "건)");
     		}
 
     		// 3. 데이터베이스에 연결되어 있던 자원 종료
@@ -3563,7 +3567,7 @@ public class Main_UI extends JFrame {
     // 주문관리 - 전체 조회 메서드
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     void subOrderSelect(String page) {
-    	subOrdermodel.setRowCount(0);
+    	subOrderModel.setRowCount(0);
 
     	try {
 			// 1. 주문 테이블(SubOrder_sub) 불러오기
@@ -3607,7 +3611,7 @@ public class Main_UI extends JFrame {
 				}
 
 
-				subOrdercontent = "<html>";
+				subOrderContent = "<html>";
 
 				// 2. 주문 상품 테이블(product) 불러오기
 				sqlsub = "select * from product where pno = '"+ono+"'";
@@ -3633,20 +3637,20 @@ public class Main_UI extends JFrame {
 						topping = "선택안함";
 					}
 
-					subOrdercontent += (("<div style= text-align:center>" 
+					subOrderContent += (("<div style= text-align:center>" 
 							+ "<br>" +  menu  +  " (" + menuPrice + "원) " + "<br>" +  
 							" - " + bread +  " (" + breadPrice + "원) " + "<br>" +
 							" - " + topping  + " (" + toppingPrice  +  "원) " + "<br>" + " - " + vegies +  " (" + vegiesPrice + "원) " + "<br>" +
 							" - " +  sauce + " (" + saucePrice +  "원) " + "<br>" + " - " + set + "(" +  setPrice+ "원) " + "<br>"+"</div><br>"));
 				}
-				subOrdercontent += "</html>";
+				subOrderContent += "</html>";
 
-				Object[] data = {ono, division, name + id, subOrdercontent, pay, subOrderPrice, subOrderSaved, date};
+				Object[] data = {ono, division, name + id, subOrderContent, pay, subOrderPrice, subOrderSaved, date};
 
 				if(page == "statistics") {
 					statisticsModel1.addRow(data);
 				}else {
-					subOrdermodel.addRow(data);
+					subOrderModel.addRow(data);
 				}
 
 			} // while end
@@ -3715,7 +3719,7 @@ public class Main_UI extends JFrame {
 				}
 
 
-				subOrdercontent = "<html>";
+				subOrderContent = "<html>";
 
 				// 2. 주문 상품 테이블(product) 불러오기
 				sqlsub = "select * from product where pno = '"+ono+"'";
@@ -3743,20 +3747,20 @@ public class Main_UI extends JFrame {
 					} 
 
 					
-					subOrdercontent += (("<div style= text-align:center>" 
+					subOrderContent += (("<div style= text-align:center>" 
 							+ "<br>" +  menu  +  " (" + menuPrice + "원) " + "<br>" +  
 							" - " + bread +  " (" + breadPrice + "원) " + "<br>" +
 							" - " + topping  + " (" + toppingPrice  +  "원) " + "<br>" + " - " + vegies +  " (" + vegiesPrice + "원) " + "<br>" +
 							" - " +  sauce + " (" + saucePrice +  "원) " + "<br>" + " - " + set + "(" +  setPrice+ "원) " + "<br>"+"</div><br>"));						
 				}
-				subOrdercontent += "</html>";
+				subOrderContent += "</html>";
 
-				Object[] data = {ono, division, name + id, subOrdercontent, pay, subOrderPrice + "원", subOrderSaved + "원", date};
+				Object[] data = {ono, division, name + id, subOrderContent, pay, subOrderPrice + "원", subOrderSaved + "원", date};
 
 				if(page == "statistics") {
 					statisticsModel1.addRow(data);
 				}else {
-					subOrdermodel.addRow(data);
+					subOrderModel.addRow(data);
 				}
 
 			} // while end
@@ -3790,7 +3794,7 @@ public class Main_UI extends JFrame {
     		rs = pstmt.executeQuery();
 
     		if(rs.next()) {
-    			subOrdertextPane.setText(String.format("%,d", rs.getInt(1))+ " 원");
+    			subOrderTextPane.setText(String.format("%,d", rs.getInt(1))+ " 원");
     		}
 
     		// 3. 데이터베이스에 연결되어 있던 자원 종료
@@ -3816,7 +3820,7 @@ public class Main_UI extends JFrame {
 			rs = pstmt.executeQuery();
 
 			if(rs.next()) {
-				subOrdercounttextPane.setText("(" + rs.getInt(1)+ "건)");
+				subOrderCountTextPane.setText("(" + rs.getInt(1)+ "건)");
 			}
 	
 			// 3. 데이터베이스에 연결되어 있던 자원 종료
