@@ -1,6 +1,7 @@
 
 ### Eclipse ###
 .metadata
+readme_img/
 bin/
 tmp/
 *.tmp
