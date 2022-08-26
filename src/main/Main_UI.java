@@ -1808,26 +1808,26 @@ public class Main_UI extends JFrame {
 
 		// 선택회원수정 버튼 - 회원타입, 비밀번호, 이름, 핸드폰번호, 적립금 수정 가능하다. 아이디는 수정할 수 없다.
 		// 선택한 회원을 수정할 수 있게 텍스트 입력창에 띄운 후 수정하고 작성완료버튼(버튼9)을 누르면 수정한 데이터가 저장된다.
-		subUserBtn7.addMouseListener(new MouseAdapter() {
+        subUserBtn7.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-				connect();
-				
-				if(userTable.getSelectedRow() == -1) {
-        			JOptionPane.showMessageDialog(null, "수정할 회원을 선택 후 클릭해 주세요.");
-        			return;
-        		}
-				int row = userTable.getSelectedRow();
-				userComboBox.setSelectedItem(userModel.getValueAt(row, 0));
+                connect();
 
-				subUserJtf1.setText(userModel.getValueAt(row, 1).toString());
-				subUserJtf2.setText("");
-				subUserJtf3.setText(userModel.getValueAt(row, 2).toString());
-				subUserJtf4.setText(userModel.getValueAt(row, 3).toString());
-				subUserJtf5.setText(userModel.getValueAt(row, 4).toString().replaceAll("[^0-9]", ""));
-				subUserCheck = "subUserCorrect";
-			}
-		});
+                if (userTable.getSelectedRow() == -1) {
+                    JOptionPane.showMessageDialog(null, "수정할 회원을 선택 후 클릭해 주세요.");
+                    return;
+                }
+                int row = userTable.getSelectedRow();
+                userComboBox.setSelectedItem(userModel.getValueAt(row, 0));
+
+                subUserJtf1.setText(userModel.getValueAt(row, 1).toString());
+                subUserJtf2.setText("");
+                subUserJtf3.setText(userModel.getValueAt(row, 2).toString());
+                subUserJtf4.setText(userModel.getValueAt(row, 3).toString());
+                subUserJtf5.setText(userModel.getValueAt(row, 4).toString().replaceAll("[^0-9]", ""));
+                subUserCheck = "subUserCorrect";
+            }
+        });
 
 
 		// 새로운 회원추가 버튼 - 텍스트 입력란에 아이디 부터 입력할수있게 한다.
