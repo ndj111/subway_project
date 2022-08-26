@@ -424,7 +424,7 @@ public class Main_UI extends JFrame {
         //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
         // 페이지 만들기 (창 이름, 창 타이틀, 배경이미지)
         int mainBgNum = (int)(Math.random() * 3) + 1;
-        mkPage(MainPage, "2조 :: Java Project SUBWAY", "/images/main/main_bg"+mainBgNum+".jpg");
+        mkPage(MainPage, windowName, "/images/main/main_bg"+mainBgNum+".jpg");
 
 
         // 로딩 이미지
@@ -2190,7 +2190,7 @@ public class Main_UI extends JFrame {
         // MenuModify : 관리자페이지 - 메뉴관리 @오현록
         //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ		
     	// 페이지 생성 메서드 (JFrame 이름, 창 타이틀, 배경이미지)
-        mkPage(MenuModify, "관리자메뉴 - 메뉴관리", "/images/admin_menu/admin_menu_bg.jpg");
+        mkPage(MenuModify, windowName +" 관리자화면 - 메뉴관리", "/images/admin_menu/admin_menu_bg.jpg");
 
 
         mkBtn(menuModifybtnNewButton6, "/images/admin_menu/admin_menu_btn1_off.jpg", "/images/admin_menu/admin_menu_btn1_on.jpg", 64, 653, 138, 38);
