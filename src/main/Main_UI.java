@@ -2,8 +2,6 @@ package main;
 
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -47,7 +45,7 @@ public class Main_UI extends JFrame {
     
 
     // 로딩 시간 (1초 = 1000)
-    static int loadingTime = 3000;
+    static int loadingTime = 5000;
 
     // 로딩 이미지
     static JButton mainLoading;
@@ -1150,8 +1148,8 @@ public class Main_UI extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					 login(LoginType);
-			   	        }
 				 }
+			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {}
@@ -1169,8 +1167,8 @@ public class Main_UI extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					 login(LoginType);
-			   	        }
 				 }
+			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {}
@@ -1520,7 +1518,7 @@ public class Main_UI extends JFrame {
 	    subOrderbtn7.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            		int result = JOptionPane.showConfirmDialog(null, "정말로 삭제하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION);
+            	int result = JOptionPane.showConfirmDialog(null, "정말로 삭제하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION);
 
 				// 만약 창 닫기를 클릭하거나 취소 버튼을 클릭하지 않았다면
 				if(result == JOptionPane.CLOSED_OPTION) {
@@ -1618,8 +1616,8 @@ public class Main_UI extends JFrame {
         		pageMove("submenu");
 
                 connect(); 
-            		menuModifyselect();
-            		conClose(rs, pstmt);
+                menuModifyselect();
+                conClose(rs, pstmt);
 			}
 		});
 
@@ -1659,7 +1657,7 @@ public class Main_UI extends JFrame {
         subUserBtn5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            	gotoMain();
+            	pageMove("main");
 			}
 		});
 
@@ -1781,31 +1779,32 @@ public class Main_UI extends JFrame {
 					subUserCheck = "subUserAlert";
 				}
 				switch (subUserCheck) {
-				case "subUserAlert":
-					JOptionPane.showMessageDialog(null, "추가,수정버튼을 먼저 클릭해주세요!", "클릭 입력", JOptionPane.PLAIN_MESSAGE);
-					break;
-				//추가기능	
-				case "subUserAdd" :
-					connect();
-					UserInsert();
-					JOptionPane.showMessageDialog(null, "회원 추가 되었습니다.", "메뉴 추가 완료", JOptionPane.PLAIN_MESSAGE);
-					userSelect();
-					subUserClear();
-					subUserCheck = "subUserAlert";
-					break;
-				//수정기능
-				case "subUserCorrect":
-					connect();
-					userUpdate();
-					subUserClear();
-					userSelect();
-					subUserCheck = "subUserAlert";
-					break;
-					
+					case "subUserAlert":
+						JOptionPane.showMessageDialog(null, "추가,수정버튼을 먼저 클릭해주세요!", "클릭 입력", JOptionPane.PLAIN_MESSAGE);
+						break;
+
+					//추가기능	
+					case "subUserAdd" :
+						connect();
+						UserInsert();
+						JOptionPane.showMessageDialog(null, "회원 추가 되었습니다.", "메뉴 추가 완료", JOptionPane.PLAIN_MESSAGE);
+						userSelect();
+						subUserClear();
+						subUserCheck = "subUserAlert";
+						break;
+
+					//수정기능
+					case "subUserCorrect":
+						connect();
+						userUpdate();
+						subUserClear();
+						userSelect();
+						subUserCheck = "subUserAlert";
+						break;
 				}
-				
 			}
 		});
+
 
 		// 선택회원수정 버튼 - 회원타입, 비밀번호, 이름, 핸드폰번호, 적립금 수정 가능하다. 아이디는 수정할 수 없다.
 		// 선택한 회원을 수정할 수 있게 텍스트 입력창에 띄운 후 수정하고 작성완료버튼(버튼9)을 누르면 수정한 데이터가 저장된다.
@@ -1848,7 +1847,6 @@ public class Main_UI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 				subUserClear();
-
 			}
 		});
 
@@ -1885,7 +1883,7 @@ public class Main_UI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 pageMove("suborder");
-				
+
 				String odate = todaySet(subOrdermodel, dateChooserOrder); // 자동 선택 값 오늘 날짜로 변경
 				connect();
 				subOrderSelect(odate, "order");
@@ -2062,7 +2060,7 @@ public class Main_UI extends JFrame {
 				connect();	
 				statisticsTable.setModel(statisticsModel);
 				statisticsTable.getModel(); // model 생성
-				
+
 				try {
 					sql = "SELECT PMENU, PMENUPRICE, COUNT(*) AS COUNT FROM PRODUCT "
 							+ "GROUP BY PMENU, PMENUPRICE "
@@ -2093,7 +2091,6 @@ public class Main_UI extends JFrame {
 
 				}
 			}
-			
 		});
 				
 		
@@ -2101,7 +2098,7 @@ public class Main_UI extends JFrame {
 		statisticsBtn3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            		dateChooser.setCalendar(null); // dateChooser 값 초기화
+            	dateChooser.setCalendar(null); // dateChooser 값 초기화
 				statisticsModel.setRowCount(0);
 				connect();	
 				statisticsTable.setModel(statisticsModel);
@@ -2119,10 +2116,11 @@ public class Main_UI extends JFrame {
 						Object[] data = {i, pbread, 0+"원", count, 0+"원"};
 						statisticsModel.addRow(data);
 						i++;
-					}				
-				} catch (SQLException e1) {
+					}
 
+				} catch (SQLException e1) {
 					e1.printStackTrace();
+
 				} finally {
 					conClose(rs, pstmt, con);
 					statisticsModelCentered(statisticsTable);
@@ -2133,7 +2131,8 @@ public class Main_UI extends JFrame {
 				}
 			}
 		});
-		
+
+
 		// 세트 판매순위
 		statisticsBtn4.addMouseListener(new MouseAdapter() {
             @Override
@@ -2162,9 +2161,11 @@ public class Main_UI extends JFrame {
 						Object[] data = {i, pset, pset_price, count, total_price};
 						statisticsModel.addRow(data);
 						i++;
-					}				
+					}
+
 				} catch (SQLException e1) {
 					e1.printStackTrace();
+
 				} finally {
 					conClose(rs, pstmt, con);
 					statisticsModelCentered(statisticsTable);
@@ -2214,17 +2215,19 @@ public class Main_UI extends JFrame {
 			}
 		});
 
+
         mkBtn(menuModifybtnNewButton2, "/images/admin_nav/admin_nav_btn2_on.jpg", "/images/admin_nav/admin_nav_btn2_on.jpg", 1062, 20, 157, 38);
         menuModifybtnNewButton2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            		pageMove("submenu");
+            	pageMove("submenu");
 
                 connect(); 
-            		menuModifyselect();
-            		conClose(rs, pstmt);
+                menuModifyselect();
+                conClose(rs, pstmt);
 			}
 		});
+
 
         mkBtn(menuModifybtnNewButton3, "/images/admin_nav/admin_nav_btn3_off.jpg", "/images/admin_nav/admin_nav_btn3_on.jpg", 899, 63, 157, 38);
         menuModifybtnNewButton3.addMouseListener(new MouseAdapter() {
@@ -2236,6 +2239,7 @@ public class Main_UI extends JFrame {
 				userSelect();
 			}
 		});
+
 
         mkBtn(menuModifybtnNewButton4, "/images/admin_nav/admin_nav_btn4_off.jpg", "/images/admin_nav/admin_nav_btn4_on.jpg", 1062, 63, 157, 38);
         menuModifybtnNewButton4.addMouseListener(new MouseAdapter() {
@@ -2254,11 +2258,12 @@ public class Main_UI extends JFrame {
 			}
 		});
 
+
         mkBtn(menuModifybtnNewButton5, "/images/admin_nav/admin_nav_close_off.jpg", "/images/admin_nav/admin_nav_close_on.jpg", 12, 10, 24, 24);
         menuModifybtnNewButton5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            		gotoMain();
+            	pageMove("main");
 			}
 		});
 
@@ -2303,7 +2308,7 @@ public class Main_UI extends JFrame {
         menuModifyeditorPane12.setText("판매가격");
         menuModifyeditorPane12.setFont(new Font("맑은 고딕", Font.PLAIN, 16));
         MenuModify.getContentPane().add(menuModifyeditorPane12);
-        
+
         //메뉴이름 텍스트 입력창
         mkInp(menuModifytextField1, "", 100, "plain", 15, "left", 1055, 307, 138, 38);
         MenuModify.getContentPane().add(menuModifytextField1);
@@ -2315,7 +2320,7 @@ public class Main_UI extends JFrame {
         //판매 가격 텍스트 입력창
         mkInp(menuModifytextField3, "", 100, "plain", 15, "left", 1055, 367, 138, 38);
         MenuModify.getContentPane().add(menuModifytextField3);
-        
+
         //jcb1 카테고리 콤보박스 담을 패널
         JPanel menuModifypanel2 = new JPanel();
         menuModifypanel2.setBounds(1043, 237, 162, 48);
@@ -2327,7 +2332,7 @@ public class Main_UI extends JFrame {
         menuModifyjcb1.setBounds(12, 5, 138, 38);
         menuModifyjcb1.setFont(new Font("맑은 고딕", Font.BOLD, 14));
         menuModifyjcb1.addItem("선택");
-        
+
         // jcb1 카테고리 콤보박스 패널에 담기
         menuModifypanel2.setLayout(null);
         menuModifypanel2.add(menuModifyjcb1);
@@ -2410,47 +2415,48 @@ public class Main_UI extends JFrame {
 		menuModifybtnNewButton8.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            		if(menuModifycheck=="") {
-            			menuModifycheck="menuAlert";
-            		}
-            		switch (menuModifycheck) {
-            			// case menuAlert을 적용 작성완료 버튼만 눌렀을떄 사용된다.
-            			case "menuAlert" :
-            				JOptionPane.showMessageDialog(null, "추가,수정버튼을 먼저 클릭해주세요!", "클릭 입력", JOptionPane.PLAIN_MESSAGE);
-            				break;
+        		if(menuModifycheck=="") {
+        			menuModifycheck="menuAlert";
+        		}
 
-            			//case menuAdd 적용 메뉴 추가 기능을 한다.
-            			case "menuAdd" :
-            				connect();
+        		switch (menuModifycheck) {
+        			// case menuAlert을 적용 작성완료 버튼만 눌렀을떄 사용된다.
+        			case "menuAlert" :
+        				JOptionPane.showMessageDialog(null, "추가,수정버튼을 먼저 클릭해주세요!", "클릭 입력", JOptionPane.PLAIN_MESSAGE);
+        				break;
 
-            				menuModifyinsert();
+        			//case menuAdd 적용 메뉴 추가 기능을 한다.
+        			case "menuAdd" :
+        				connect();
 
-            				JOptionPane.showMessageDialog(null, "메뉴가 추가 되었습니다.", "메뉴 추가 완료", JOptionPane.PLAIN_MESSAGE);
-            				menuModifymodel.setRowCount(0);
-            				menuModifyselect();
-            				menuModifyclose();
+        				menuModifyinsert();
 
-            				conClose(rs, pstmt);
+        				JOptionPane.showMessageDialog(null, "메뉴가 추가 되었습니다.", "메뉴 추가 완료", JOptionPane.PLAIN_MESSAGE);
+        				menuModifymodel.setRowCount(0);
+        				menuModifyselect();
+        				menuModifyclose();
 
-            				menuModifycheck = "menuAlert";
-            				break;
+        				conClose(rs, pstmt);
 
-            			//case menuCorrect 적용 메뉴 수정 기능을 한다.
-            			case "menuCorrect" :
-            				connect();
-            				menuModifyUpdate();
+        				menuModifycheck = "menuAlert";
+        				break;
 
-            				JOptionPane.showMessageDialog(null, "메뉴가 수정 되었습니다.", "메뉴 수정 완료", JOptionPane.PLAIN_MESSAGE);
-            				menuModifymodel.setRowCount(0);
+        			//case menuCorrect 적용 메뉴 수정 기능을 한다.
+        			case "menuCorrect" :
+        				connect();
+        				menuModifyUpdate();
 
-            				menuModifyselect();
-            				menuModifyclose();
+        				JOptionPane.showMessageDialog(null, "메뉴가 수정 되었습니다.", "메뉴 수정 완료", JOptionPane.PLAIN_MESSAGE);
+        				menuModifymodel.setRowCount(0);
 
-            				conClose(rs, pstmt);
-            				menuModifycheck = "menuAlert";
+        				menuModifyselect();
+        				menuModifyclose();
 
-            				break;
-            		}
+        				conClose(rs, pstmt);
+        				menuModifycheck = "menuAlert";
+
+        				break;
+        		}
             }
 		});
 
@@ -2459,28 +2465,27 @@ public class Main_UI extends JFrame {
 		menuModifybtnNewButton6.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+        		if(menuModifytable.getSelectedRow() == -1) {
+        			JOptionPane.showMessageDialog(null, "메뉴를 선택하신 후 클릭해주세요.");
+        			return;
+        		}
 
-            		if(menuModifytable.getSelectedRow() == -1) {
-            			JOptionPane.showMessageDialog(null, "메뉴를 선택하신 후 클릭해주세요.");
-            			return;
-            		}
+        		int result = JOptionPane.showConfirmDialog(null, "정말로 삭제하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION);
+        		if(result == JOptionPane.CLOSED_OPTION) {
+        			JOptionPane.showMessageDialog(null, "취소를 클릭하셨습니다.");
+        		}else if(result == JOptionPane.NO_OPTION) {
+        			JOptionPane.showMessageDialog(null, "취소 버튼을 클릭하셨습니다.");
+        		}else {
+        			connect();
 
-            		int result = JOptionPane.showConfirmDialog(null, "정말로 삭제하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION);
-            		if(result == JOptionPane.CLOSED_OPTION) {
-            			JOptionPane.showMessageDialog(null, "취소를 클릭하셨습니다.");
-            		}else if(result == JOptionPane.NO_OPTION) {
-            			JOptionPane.showMessageDialog(null, "취소 버튼을 클릭하셨습니다.");
-            		}else {
-            			connect();
+        			menuModifydelete();
 
-            			menuModifydelete();
+        			JOptionPane.showMessageDialog(null, "메뉴가 삭제 되었습니다.", "메뉴 삭제 완료", JOptionPane.PLAIN_MESSAGE);
+        			menuModifymodel.setRowCount(0);
 
-            			JOptionPane.showMessageDialog(null, "메뉴가 삭제 되었습니다.", "메뉴 삭제 완료", JOptionPane.PLAIN_MESSAGE);
-            			menuModifymodel.setRowCount(0);
-
-            			menuModifyselect();
-            			conClose(rs, pstmt);
-            		}
+        			menuModifyselect();
+        			conClose(rs, pstmt);
+        		}
             }
 		});
 
@@ -2489,9 +2494,9 @@ public class Main_UI extends JFrame {
 		menuModifybtnNewButton10.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            		menuModifytextField1.requestFocus();
-            		//switch 문에서 사용할 변수값 menuAdd를 저장한다.
-            		menuModifycheck = "menuAdd";
+        		menuModifytextField1.requestFocus();
+        		//switch 문에서 사용할 변수값 menuAdd를 저장한다.
+        		menuModifycheck = "menuAdd";
             }
 		});
 
@@ -2542,14 +2547,10 @@ public class Main_UI extends JFrame {
 		menuModifybtnNewButton9.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            		// 입력 화면을 깨끗하게해주는 메소드
+            	// 입력 화면을 깨끗하게해주는 메소드
         		menuModifyclose();
             }
 		});
-
-
-
-
 
     }
 
@@ -2619,8 +2620,6 @@ public class Main_UI extends JFrame {
 							subOrderCount(odate);
 							autoAdjustColumnWidth(subOrdertable);
 							autoAdjustRowHeights(subOrdertable);
-
-
 						}else{
 							showMemInfo();
 							pageMove("order1");
@@ -3347,8 +3346,7 @@ public class Main_UI extends JFrame {
         int result = JOptionPane.showConfirmDialog(null, "선택하신 메뉴와 정보를 확인하셨나요?\n주문&결제를 진행하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION);                 
         if(result == 0){
             try {
-
-                	// 주문번호 앞(날짜) 생성
+            	// 주문번호 앞(날짜) 생성
                 SimpleDateFormat nowDateFormat = new SimpleDateFormat("yyMMdd");
                 Calendar c1 = Calendar.getInstance();
                 String sessHeader = nowDateFormat.format(c1.getTime());
@@ -3370,13 +3368,13 @@ public class Main_UI extends JFrame {
 
                 // 주문번호 생성
                 if(chkSess != null) {
-                		String[] epdSess = chkSess.split("_");
-                		int tmp = Integer.parseInt(epdSess[1]) + 1;
-                		String sessFooter = setLength(tmp);
-                		ONO = sessHeader+"_"+sessFooter; 
-                	}else{
-                		ONO = sessHeader+"_000001"; 
-                	}
+            		String[] epdSess = chkSess.split("_");
+            		int tmp = Integer.parseInt(epdSess[1]) + 1;
+            		String sessFooter = setLength(tmp);
+            		ONO = sessHeader+"_"+sessFooter; 
+            	}else{
+            		ONO = sessHeader+"_000001"; 
+            	}
 
 
                 // 식사장소
@@ -3389,11 +3387,11 @@ public class Main_UI extends JFrame {
 
                 // 회원정보
                 if(User_id != null) {
-                		OID = User_id;
+                	OID = User_id;
                     ONAME = User_name;
                 }else{
-                		OID = null;
-                		ONAME = "비회원";
+                	OID = null;
+                	ONAME = "비회원";
                 }
 
 
@@ -3413,28 +3411,28 @@ public class Main_UI extends JFrame {
 
                 // 적립금사용
                 if(User_id != null && orderCartInput.getText() != null) {
-                		OSAVED = Integer.parseInt(orderCartInput.getText());
+            		OSAVED = Integer.parseInt(orderCartInput.getText());
 
-                		if(OSAVED > User_point) {
-                			JOptionPane.showMessageDialog(null, "보유하고있는 적립금 보다 많은 금액을 사용할 수 없습니다.");
-                			orderCartInput.setText("0");
-                			orderCartInput.requestFocus();
-                			return;
-                		}
+            		if(OSAVED > User_point) {
+            			JOptionPane.showMessageDialog(null, "보유하고있는 적립금 보다 많은 금액을 사용할 수 없습니다.");
+            			orderCartInput.setText("0");
+            			orderCartInput.requestFocus();
+            			return;
+            		}
 
-                		// 유저 적립금 수정
-                		User_point = User_point - OSAVED;
+            		// 유저 적립금 수정
+            		User_point = User_point - OSAVED;
 
-                		connect();
+            		connect();
 
-                		pstmt = con.prepareStatement("update SUBUSER set UREWARD = ? where U_ID = ?");
-            			pstmt.setInt(1, User_point);
-            			pstmt.setString(2, User_id);
-            			pstmt.executeUpdate();
+            		pstmt = con.prepareStatement("update SUBUSER set UREWARD = ? where U_ID = ?");
+        			pstmt.setInt(1, User_point);
+        			pstmt.setString(2, User_id);
+        			pstmt.executeUpdate();
 
-            			pstmt.close();
+        			pstmt.close();
                 }else{
-                		OSAVED = 0;
+                	OSAVED = 0;
                 }
 
 
@@ -3447,25 +3445,25 @@ public class Main_UI extends JFrame {
                     sql = "insert into PRODUCT values(PRODUCT_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                     pstmt = con.prepareStatement(sql);
 
-                    	pstmt.setString(1, ONO); //PNO
-                    	pstmt.setString(2, ACdto.getAddSel1Name()); //PMENU
-                    	pstmt.setInt(3, ACdto.getAddSel1Price()); //PMENUPRICE
-                    	pstmt.setString(4, ACdto.getAddSel2Name()); //PBREAD
-                    	pstmt.setInt(5, ACdto.getAddSel2Price()); //PBREADPRICE
-                    	pstmt.setString(6, ACdto.getAddSel3Name()); //PTOPPING
-                    	pstmt.setInt(7, ACdto.getAddSel3Price()); //PTOPPINGPRICE
-                    	pstmt.setString(8, ACdto.getAddSel4Name()); //PVEGIES
-                    	pstmt.setInt(9, ACdto.getAddSel4Price()); //PVEGIESPRICE
-                    	pstmt.setString(10, ACdto.getAddSel5Name()); //PSAUCE
-                    	pstmt.setInt(11, ACdto.getAddSel5Price()); //PSAUCEPRICE
-                    	pstmt.setString(12, ACdto.getAddSel6Name()); //PSET
-                    	pstmt.setInt(13, ACdto.getAddSel6Price()); //PSETPRICE
-                    	pstmt.setInt(14, ACdto.getAddSumPrice()); //PTOTALPRICE
-                    	pstmt.executeUpdate();
+                	pstmt.setString(1, ONO); //PNO
+                	pstmt.setString(2, ACdto.getAddSel1Name()); //PMENU
+                	pstmt.setInt(3, ACdto.getAddSel1Price()); //PMENUPRICE
+                	pstmt.setString(4, ACdto.getAddSel2Name()); //PBREAD
+                	pstmt.setInt(5, ACdto.getAddSel2Price()); //PBREADPRICE
+                	pstmt.setString(6, ACdto.getAddSel3Name()); //PTOPPING
+                	pstmt.setInt(7, ACdto.getAddSel3Price()); //PTOPPINGPRICE
+                	pstmt.setString(8, ACdto.getAddSel4Name()); //PVEGIES
+                	pstmt.setInt(9, ACdto.getAddSel4Price()); //PVEGIESPRICE
+                	pstmt.setString(10, ACdto.getAddSel5Name()); //PSAUCE
+                	pstmt.setInt(11, ACdto.getAddSel5Price()); //PSAUCEPRICE
+                	pstmt.setString(12, ACdto.getAddSel6Name()); //PSET
+                	pstmt.setInt(13, ACdto.getAddSel6Price()); //PSETPRICE
+                	pstmt.setInt(14, ACdto.getAddSumPrice()); //PTOTALPRICE
+                	pstmt.executeUpdate();
 
                     OPRICE += ACdto.getAddSumPrice();
                 }
-                	OPRICE = OPRICE - OSAVED;
+                OPRICE = OPRICE - OSAVED;
 
 
 
@@ -3473,29 +3471,29 @@ public class Main_UI extends JFrame {
                 // 1 주문번호, 2 식사장소, 3 주문자이름, 4 주문자ID, 5 결제방법, 6 결제금액, 7 적립금사용, 주문일자
                 sql = "insert into SUBORDER values(?, ?, ?, ?, ?, ?, ?, sysdate)";
                 pstmt = con.prepareStatement(sql);
-                	pstmt.setString(1, ONO);
-                	pstmt.setString(2, ODIVISION);
-                	pstmt.setString(3, ONAME);
-                	pstmt.setString(4, OID);
-                	pstmt.setString(5, OPAY);
-                	pstmt.setInt(6, OPRICE);
-                	pstmt.setInt(7, OSAVED);
-                	pstmt.executeUpdate();
+            	pstmt.setString(1, ONO);
+            	pstmt.setString(2, ODIVISION);
+            	pstmt.setString(3, ONAME);
+            	pstmt.setString(4, OID);
+            	pstmt.setString(5, OPAY);
+            	pstmt.setInt(6, OPRICE);
+            	pstmt.setInt(7, OSAVED);
+            	pstmt.executeUpdate();
 
 
-                	// 주문 적립금 적립
-                	if(User_id != null) {
-                		int addBuy_point = (int)(OPRICE * buyPointPercent);
-                		User_point = User_point + addBuy_point;
+            	// 주문 적립금 적립
+            	if(User_id != null) {
+            		int addBuy_point = (int)(OPRICE * buyPointPercent);
+            		User_point = User_point + addBuy_point;
 
-                		pstmt = con.prepareStatement("update SUBUSER set UREWARD = ? where U_ID = ?");
-                		pstmt.setInt(1, User_point);
-                		pstmt.setString(2, User_id);
-                		pstmt.executeUpdate();
-                		pstmt.close();
+            		pstmt = con.prepareStatement("update SUBUSER set UREWARD = ? where U_ID = ?");
+            		pstmt.setInt(1, User_point);
+            		pstmt.setString(2, User_id);
+            		pstmt.executeUpdate();
+            		pstmt.close();
 
-                		JOptionPane.showMessageDialog(null, "주문시 적립금 "+String.format("%,d", addBuy_point)+"원이 적립되었습니다.");
-                	}
+            		JOptionPane.showMessageDialog(null, "주문시 적립금 "+String.format("%,d", addBuy_point)+"원이 적립되었습니다.");
+            	}
 
 
         		conClose(rs, pstmt, con);
