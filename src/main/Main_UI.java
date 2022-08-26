@@ -4152,6 +4152,9 @@ public class Main_UI extends JFrame {
 			userModel.removeRow(row);
 			pstmt.close();
 		} catch (Exception e) {
+			if (e.getMessage().contains("child")) {
+				JOptionPane.showMessageDialog(null, "주문 내역이 있는 회원입니다! 삭제가 불가능합니다.");
+			}
 			e.printStackTrace();
 		}
 	}
