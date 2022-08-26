@@ -37,6 +37,8 @@ import com.toedter.calendar.JTextFieldDateEditor;
 import model.AddCartDTO;
 import model.MenuSelectDTO;
 
+// test 중
+
 
 // 최종 수정 : 현진
 
@@ -2847,7 +2849,13 @@ public class Main_UI extends JFrame {
     // 장바구니 리셋 (비우기)
     ////////////////////////////////////////////////////////////////////////////////////////////
     void cartReset() {
+        // 주문배열 비우기
         orderCartMenu.clear();
+
+        // 주문확인 선택 초기화
+        orderCartRadio1_1.doClick();
+        orderCartRadio2_1.doClick();
+        orderCartInput.setText("0");
     }
 
 
@@ -3290,6 +3298,7 @@ public class Main_UI extends JFrame {
         int TempSelSumprice = TempSel1Price + TempSel2Price + TempSel3Price + TempSel4Price + TempSel5Price + TempSel6Price;
 
         // 주문 배열에 넣기
+        // System.out.println(TempSel1Name+"\n"+TempSel1Price+"\n"+TempSel2Name+"\n"+TempSel2Price+"\n"+TempSel3Name+"\n"+TempSel3Price+"\n"+TempSel4Name+"\n"+TempSel4Price+"\n"+TempSel5Name+"\n"+TempSel5Price+"\n"+TempSel6Name+"\n"+TempSel6Price+"\n"+TempSelSumprice);
         orderCartMenu.add(new AddCartDTO(TempSel1Name, TempSel1Price, TempSel2Name, TempSel2Price, TempSel3Name, TempSel3Price, TempSel4Name, TempSel4Price, TempSel5Name, TempSel5Price, TempSel6Name, TempSel6Price, TempSelSumprice));
 
         // 장바구니 새로고침
@@ -3368,6 +3377,7 @@ public class Main_UI extends JFrame {
 
                 conClose(rs, pstmt, con);
 
+
                 // 주문번호 생성
                 if(chkSess != null) {
             		String[] epdSess = chkSess.split("_");
@@ -3441,6 +3451,7 @@ public class Main_UI extends JFrame {
                 connect();
 
                 // 주문상품 넣기
+                OPRICE = 0;
                 for(int i=0; i<orderCartMenu.size(); i++){
                     AddCartDTO ACdto = orderCartMenu.get(i);
 
@@ -3674,7 +3685,7 @@ public class Main_UI extends JFrame {
     void subOrderSelect(String odate, String page) {
     	try {
     		// 1. 데이터베이스로 전송할 SQL문 작성.
-			sql = "select * from suborder where odate like ?";
+			sql = "select * from suborder where odate like ? order by odate desc";
 
 			//서브오더에서 모든 자료 날짜가 선택한 창일 경우			
 			pstmt = con.prepareStatement(sql);
