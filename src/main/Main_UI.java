@@ -2603,7 +2603,7 @@ public class Main_UI extends JFrame {
 				if (rs.next()) {
 
 					// 비밀번호 암호화
-					String chkPWD = encryptMD5(loginJtf2.getText());
+					String chkPWD = encryptSHA1(loginJtf2.getText());
 
 					if (rs.getString("u_pw").equals(chkPWD)) {
 						loginJtf1.setText("");
@@ -2647,9 +2647,6 @@ public class Main_UI extends JFrame {
 			}
 
 		} catch (Exception e) {
-			if (e.getMessage().contains("PRIMARY")) {
-				JOptionPane.showMessageDialog(null, "아이디 중복 오류");
-			}
 			e.printStackTrace();
 		}
 	}
@@ -2790,7 +2787,7 @@ public class Main_UI extends JFrame {
 					break;
 				} else {
 					// 비밀번호 암호화
-					String setPWD = encryptMD5(joinJtf2.getText());
+					String setPWD = encryptSHA1(joinJtf2.getText());
 
 					pstmt.setString(1, joinJtf1.getText());
 					pstmt.setString(2, setPWD);
@@ -4110,13 +4107,17 @@ public class Main_UI extends JFrame {
 				pstmt.setString(1, "admin");
 			}
 			pstmt.setString(2, subUserJtf1.getText());
-			pstmt.setString(3, encryptMD5(subUserJtf2.getText())); // 비번
+			pstmt.setString(3, encryptSHA1(subUserJtf2.getText())); // 비번
 			pstmt.setString(4, subUserJtf3.getText());
 			pstmt.setString(5, subUserJtf4.getText());
 			pstmt.setInt(6, setUserInsertP);
 			pstmt.executeUpdate();
-		} catch (SQLIntegrityConstraintViolationException e) {
 		} catch (Exception e) {
+			if (e.getMessage().contains("unique")) {
+				JOptionPane.showMessageDialog(null, "아이디 중복");
+				subUserJtf1.requestFocus();
+				return;
+			}
 			e.printStackTrace();
 		}
 	}
@@ -4133,7 +4134,7 @@ public class Main_UI extends JFrame {
 			} else if (userComboBox.getSelectedItem().toString().equals("관리자")) {
 				pstmt.setString(1, "admin");
 			}
-			pstmt.setString(2, encryptMD5(subUserJtf2.getText())); // u_pw
+			pstmt.setString(2, encryptSHA1(subUserJtf2.getText())); // u_pw
 			pstmt.setString(3, subUserJtf3.getText()); // uname
 			pstmt.setString(4, subUserJtf4.getText()); // uphone
 			pstmt.setInt(5, Integer.parseInt(subUserJtf5.getText())); // ureward
@@ -4169,7 +4170,8 @@ public class Main_UI extends JFrame {
 			userModel.removeRow(row);
 			pstmt.close();
 		} catch (Exception e) {
-			if (e.getMessage().contains("child")) {
+			if (e.getMessage().contains("child")) 
+			{
 				JOptionPane.showMessageDialog(null, "주문 내역이 있는 회원입니다! 삭제가 불가능합니다.");
 			}
 			e.printStackTrace();
@@ -4466,25 +4468,25 @@ public class Main_UI extends JFrame {
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////
-    // 비밀번호 암호화
+    // 비밀번호 암호화 (SHA-1 방식)
     ////////////////////////////////////////////////////////////////////////////////////////////
-    public static String encryptMD5(String pwd) {
-        String MD5 = "";
+    public static String encryptSHA1(String pwd) {
+        String SHA1 = "";
         try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(pwd.getBytes());
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            md.update("SHA-1".getBytes());
             byte byteData[] = md.digest();
             StringBuffer sb = new StringBuffer();
             for (int i = 0; i < byteData.length; i++) {
                 sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
             }
-            MD5 = sb.toString();
+            SHA1 = sb.toString();
 
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-            MD5 = null;
+            SHA1 = null;
         }
-        return MD5;
+        return SHA1;
     }
 
 
