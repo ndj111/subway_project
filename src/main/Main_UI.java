@@ -2094,7 +2094,6 @@ public class Main_UI extends JFrame {
 					conClose(rs, pstmt, con);
 					statisticsModelCentered(statisticsTable);
 					autoAdjustColumnWidth(statisticsTable);
-					autoAdjustRowHeights(statisticsTable);
 					statisticsTable.setRowHeight(30);
 
 				}
@@ -2133,9 +2132,9 @@ public class Main_UI extends JFrame {
 					conClose(rs, pstmt, con);
 					statisticsModelCentered(statisticsTable);
 					autoAdjustColumnWidth(statisticsTable);
-					autoAdjustRowHeights(statisticsTable);
 					statisticsTable.setRowHeight(30);
 
+			        
 				}
 			}
 		});
@@ -2178,7 +2177,6 @@ public class Main_UI extends JFrame {
 					conClose(rs, pstmt, con);
 					statisticsModelCentered(statisticsTable);
 					autoAdjustColumnWidth(statisticsTable);
-					autoAdjustRowHeights(statisticsTable);
 					statisticsTable.setRowHeight(30);
 				}
 			}
@@ -4216,7 +4214,7 @@ public class Main_UI extends JFrame {
     public void autoAdjustColumnWidth(JTable table) {
         final TableColumnModel columnModel = table.getColumnModel();
         for (int column = 0; column < table.getColumnCount(); column++) {
-            int columeWidth = 50; // Min width
+            int columeWidth = 15; // Min width
             for (int row = 0; row < table.getRowCount(); row++) {
                 TableCellRenderer renderer = table.getCellRenderer(row, column);
                 Component comp = table.prepareRenderer(renderer, row, column);
@@ -4225,9 +4223,6 @@ public class Main_UI extends JFrame {
             columnModel.getColumn(column).setPreferredWidth(columeWidth);
         }
     }
-
-
-
 
     ////////////////////////////////////////////////////////////////////////////////////////////
     // 테이블 행 높이 자동조절
