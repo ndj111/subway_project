@@ -3,8 +3,8 @@
 <br/>
 
 #### 진행기간 : 2022.08.12 ~ 2022.08.29
-#### 팀리더 : [남윤지](https://github.com/YJ-NAM)
-#### 팀원 : [노동진](https://github.com/ndj111), [공현진](https://github.com/bbbmore), [전영주](https://github.com/Yeongdu), [오현록](https://github.com/ohhyunrok)
+#### 팀리더 : [YJ-NAM](https://github.com/YJ-NAM)
+#### 팀원 : [ndj111](https://github.com/ndj111), [bbbmore](https://github.com/bbbmore), [Yeongdu](https://github.com/Yeongdu), [ohhyunrok](https://github.com/ohhyunrok)
 
 <br/>
 
@@ -64,9 +64,9 @@
 
 ## Work
 
-- 노동진 : 사용자 주문화면, 주문입력, 파일 취합
+- YJ-NAM : 판매 통계
 
-- 남윤진 : 판매 통계
-- 공현진 : 주문내역
-- 전영주 : 사용자 로그인, 사용자 회원가입, 회원관리
-- 오현록 : 메뉴관리
+- ndj111 : 사용자 주문화면, 주문입력, 파일 취합
+- Yeongdu : 사용자 로그인, 사용자 회원가입, 회원관리
+- bbbmore : 주문내역
+- ohhyunrok : 메뉴관리
