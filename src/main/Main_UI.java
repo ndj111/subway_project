@@ -2603,7 +2603,7 @@ public class Main_UI extends JFrame {
 				if (rs.next()) {
 
 					// 비밀번호 암호화
-					String chkPWD = encryptSHA1(loginJtf2.getText());
+					String chkPWD = encryptMD5(loginJtf2.getText());
 
 					if (rs.getString("u_pw").equals(chkPWD)) {
 						loginJtf1.setText("");
@@ -2787,7 +2787,7 @@ public class Main_UI extends JFrame {
 					break;
 				} else {
 					// 비밀번호 암호화
-					String setPWD = encryptSHA1(joinJtf2.getText());
+					String setPWD = encryptMD5(joinJtf2.getText());
 
 					pstmt.setString(1, joinJtf1.getText());
 					pstmt.setString(2, setPWD);
@@ -4107,7 +4107,7 @@ public class Main_UI extends JFrame {
 				pstmt.setString(1, "admin");
 			}
 			pstmt.setString(2, subUserJtf1.getText());
-			pstmt.setString(3, encryptSHA1(subUserJtf2.getText())); // 비번
+			pstmt.setString(3, encryptMD5(subUserJtf2.getText())); // 비번
 			pstmt.setString(4, subUserJtf3.getText());
 			pstmt.setString(5, subUserJtf4.getText());
 			pstmt.setInt(6, setUserInsertP);
@@ -4134,7 +4134,7 @@ public class Main_UI extends JFrame {
 			} else if (userComboBox.getSelectedItem().toString().equals("관리자")) {
 				pstmt.setString(1, "admin");
 			}
-			pstmt.setString(2, encryptSHA1(subUserJtf2.getText())); // u_pw
+			pstmt.setString(2, encryptMD5(subUserJtf2.getText())); // u_pw
 			pstmt.setString(3, subUserJtf3.getText()); // uname
 			pstmt.setString(4, subUserJtf4.getText()); // uphone
 			pstmt.setInt(5, Integer.parseInt(subUserJtf5.getText())); // ureward
@@ -4468,25 +4468,25 @@ public class Main_UI extends JFrame {
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////
-    // 비밀번호 암호화 (SHA-1 방식)
+    // 비밀번호 암호화
     ////////////////////////////////////////////////////////////////////////////////////////////
-    public static String encryptSHA1(String pwd) {
-        String SHA1 = "";
+    public static String encryptMD5(String pwd) {
+        String MD5 = "";
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-1");
-            md.update("SHA-1".getBytes());
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(pwd.getBytes());
             byte byteData[] = md.digest();
             StringBuffer sb = new StringBuffer();
             for (int i = 0; i < byteData.length; i++) {
                 sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
             }
-            SHA1 = sb.toString();
+            MD5 = sb.toString();
 
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-            SHA1 = null;
+            MD5 = null;
         }
-        return SHA1;
+        return MD5;
     }
 
 
